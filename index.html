@@ -317,6 +317,53 @@ button{cursor:pointer;}
 .note-item{background:#F8F9FB;border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--text-dark);}
 .note-date{font-size:10.5px;color:var(--text-soft);margin-bottom:2px;font-weight:600;}
 
+.client-select-wrap{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px;box-shadow:var(--shadow-card);}
+.client-select-wrap select{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:14px;background:#F8F9FB;}
+.client-select-empty{font-size:12px;color:var(--text-muted);margin-top:6px;}
+.suggest-card{border-radius:16px;background:linear-gradient(135deg,#FFF9EE,#FFF3DC);border:1px solid #F3D9A8;padding:13px;margin-bottom:14px;}
+.suggest-title{font-size:12.5px;font-weight:800;color:var(--gold-700);margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.suggest-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:#fff;border-radius:11px;padding:9px 11px;margin-bottom:6px;border:1px solid #F0E4C4;}
+.suggest-row:last-child{margin-bottom:0;}
+.suggest-txt{font-size:12.5px;color:var(--navy-900);font-weight:600;flex:1;min-width:0;}
+.suggest-reason{font-size:11px;color:var(--text-muted);font-weight:400;display:block;margin-top:1px;}
+.cat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:16px;}
+.cat-tile{background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;text-align:left;box-shadow:var(--shadow-card);}
+.cat-tile.active{border-color:var(--gold-600);background:linear-gradient(135deg,#FFF9EE,#fff);}
+.cat-emoji{font-size:19px;margin-bottom:5px;}
+.cat-name{font-size:12.5px;font-weight:700;color:var(--navy-900);line-height:1.25;}
+.cat-count{font-size:10.5px;color:var(--text-muted);margin-top:2px;}
+.tpl-row{display:flex;align-items:flex-start;gap:10px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:8px;box-shadow:var(--shadow-card);}
+.tpl-main{flex:1;min-width:0;cursor:pointer;}
+.tpl-name{font-size:13.5px;font-weight:700;color:var(--navy-900);}
+.tpl-meta{font-size:11.5px;color:var(--text-muted);margin-top:3px;}
+.tpl-fav{background:transparent;border:none;font-size:19px;flex-shrink:0;color:#D8DCE6;line-height:1;padding:2px;}
+.tpl-fav.on{color:var(--gold-600);}
+.var-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:4px;}
+.var-grid .form-group{margin-bottom:0;}
+.msg-preview-label{display:flex;align-items:center;justify-content:space-between;margin:14px 0 6px;}
+.msg-textarea{width:100%;min-height:170px;border:1px solid var(--line);border-radius:14px;padding:13px;font-size:13.5px;line-height:1.55;background:#F8F9FB;resize:vertical;}
+.msg-textarea:focus{outline:none;border-color:var(--gold-600);background:#fff;}
+.msg-actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:12px;}
+.tpl-detail-meta{background:#F8F9FB;border-radius:12px;padding:11px 12px;margin-bottom:4px;font-size:12px;color:var(--text-muted);}
+.tpl-detail-meta b{color:var(--navy-900);}
+.seq-block{margin-bottom:16px;}
+.seq-name{font-size:13.5px;font-weight:800;color:var(--navy-900);margin-bottom:8px;}
+.seq-step{display:flex;gap:11px;margin-bottom:2px;}
+.seq-day{width:64px;flex-shrink:0;font-size:10.5px;font-weight:800;color:var(--gold-700);padding-top:11px;text-align:right;}
+.seq-line{width:2px;background:var(--line);position:relative;flex-shrink:0;}
+.seq-dot{position:absolute;top:9px;left:-4px;width:10px;height:10px;border-radius:50%;background:var(--gold-600);}
+.seq-content{flex:1;background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;margin-bottom:10px;cursor:pointer;}
+.seq-content b{font-size:12.5px;color:var(--navy-900);display:block;}
+.seq-content span{font-size:11px;color:var(--text-muted);}
+.hist-row{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 4px;border-bottom:1px solid var(--line);}
+.hist-row:last-child{border-bottom:none;}
+.hist-main{font-size:12.5px;color:var(--navy-900);font-weight:600;}
+.hist-sub{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.tabpill-row{display:flex;gap:7px;overflow-x:auto;margin-bottom:14px;}
+.tabpill-row::-webkit-scrollbar{display:none;}
+.tabpill{flex-shrink:0;padding:8px 14px;border-radius:20px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--text-muted);white-space:nowrap;}
+.tabpill.active{background:var(--navy-900);color:#fff;border-color:var(--navy-900);}
+
 @media(min-width:992px){
   .app-shell{padding-bottom:0;}
   .bottom-nav{display:none;}
@@ -370,6 +417,7 @@ button{cursor:pointer;}
     <button class="bn-item" data-view="dashboard" onclick="setView('dashboard')"><span class="ico">&#127968;</span>Hoy</button>
     <button class="bn-item" data-view="pipeline" onclick="setView('pipeline')"><span class="ico">&#129517;</span>Pipeline</button>
     <button class="bn-item" data-view="crm" onclick="setView('crm')"><span class="ico">&#128101;</span>CRM</button>
+    <button class="bn-item" data-view="mensajes" onclick="setView('mensajes')"><span class="ico">&#128172;</span>Msj</button>
     <button class="bn-item" data-view="seguimientos" onclick="setView('seguimientos')"><span class="ico">&#9200;</span>Seguir</button>
     <button class="bn-item" onclick="openDrawer()"><span class="ico">&#9776;</span>Más</button>
   </nav>
@@ -486,10 +534,20 @@ var state={
  meta:(SAVED&&SAVED.meta)?SAVED.meta:50000,
  clientes:(SAVED&&SAVED.clientes)?SAVED.clientes:[],
  filtroCRM:{q:'',etapa:'todas'},
- filtroCot:'todas'
+ filtroCot:'todas',
+ filtroMsg:{q:'',cat:'todas',solo:'todas'},
+ msgClienteId:(SAVED&&SAVED.msgClienteId)?SAVED.msgClienteId:null,
+ msgFavoritos:(SAVED&&SAVED.msgFavoritos)?SAVED.msgFavoritos:[],
+ msgHistorial:(SAVED&&SAVED.msgHistorial)?SAVED.msgHistorial:[],
+ msgOverrides:(SAVED&&SAVED.msgOverrides)?SAVED.msgOverrides:{},
+ msgVars:(SAVED&&SAVED.msgVars)?SAVED.msgVars:{asesor:'Alejandro'}
 };
 function saveState(){
- try{localStorage.setItem(STORAGE_KEY,JSON.stringify({clientes:state.clientes,meta:state.meta}));}catch(e){}
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify({
+  clientes:state.clientes,meta:state.meta,msgClienteId:state.msgClienteId,
+  msgFavoritos:state.msgFavoritos,msgHistorial:state.msgHistorial,
+  msgOverrides:state.msgOverrides,msgVars:state.msgVars
+ }));}catch(e){}
 }
 if(!SAVED)saveState();
 
@@ -539,6 +597,7 @@ function alertCount(){
 
 var NAV=[
  {id:'dashboard',label:'Dashboard',ico:'&#127968;'},
+ {id:'mensajes',label:'Centro de Mensajes',ico:'&#128172;'},
  {id:'crm',label:'CRM de clientes',ico:'&#128101;'},
  {id:'pipeline',label:'Pipeline de ventas',ico:'&#129517;'},
  {id:'cotizaciones',label:'Cotizaciones',ico:'&#128196;'},
@@ -549,7 +608,7 @@ var NAV=[
  {id:'referidos',label:'Referidos',ico:'&#127873;'},
  {id:'reportes',label:'Reportes',ico:'&#128202;'}
 ];
-var VIEW_TITLES={dashboard:'Dashboard',crm:'CRM de clientes',pipeline:'Pipeline de ventas',cotizaciones:'Cotizaciones',
+var VIEW_TITLES={dashboard:'Dashboard',mensajes:'Centro de Mensajes',crm:'CRM de clientes',pipeline:'Pipeline de ventas',cotizaciones:'Cotizaciones',
  seguimientos:'Seguimientos',reservas:'Reservas',cobranza:'Cobranza',anteriores:'Clientes anteriores',
  referidos:'Referidos',reportes:'Reportes'};
 
@@ -593,7 +652,7 @@ function renderApp(){
  if(ac>0){badge.style.display='flex';badge.textContent=ac>9?'9+':ac;}else{badge.style.display='none';}
  var main=document.getElementById('main');
  var renderers={
-  dashboard:renderDashboard,crm:renderCRM,pipeline:renderPipeline,cotizaciones:renderCotizaciones,
+  dashboard:renderDashboard,mensajes:renderMensajes,crm:renderCRM,pipeline:renderPipeline,cotizaciones:renderCotizaciones,
   seguimientos:renderSeguimientos,reservas:renderReservas,cobranza:renderCobranza,
   anteriores:renderAnteriores,referidos:renderReferidos,reportes:renderReportes
  };
@@ -788,6 +847,7 @@ function clientModalHTML(c,isNew){
  (!isNew? (
   '<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">'+
    '<a class="btn btn-ghost btn-sm" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', te escribo de Rosale’s Adventures.')+'" target="_blank" rel="noopener">&#128242; WhatsApp</a>'+
+   '<button class="btn btn-gold btn-sm" onclick="goToMensajesFor(\''+c.id+'\')">&#128172; Enviar mensaje</button>'+
    '<button class="btn btn-ghost btn-sm" onclick="markContactedToday(\''+c.id+'\')">&#9989; Contactado hoy</button>'+
    (terminal?'':'<button class="btn btn-ghost btn-sm" onclick="advanceStage(\''+c.id+'\')">&#10132; Siguiente etapa</button>')+
    '<button class="btn btn-sm '+(c.perdido?'btn-navy':'btn-danger')+'" onclick="togglePerdido(\''+c.id+'\')">'+(c.perdido?'&#8635; Reactivar':'&#10006; Marcar perdido')+'</button>'+
@@ -1346,6 +1406,585 @@ function renderAnalysisResults(){
    '<div class="empty-state"><div class="emo">&#127881;</div>Todo está bajo control, no hay focos rojos por ahora.</div>');
  el.innerHTML=statsHTML+'<div class="section-title" style="margin-top:18px;">&#127919; Recomendaciones accionables</div>'+recsHTML;
 }
+
+/* ===================== CENTRO DE MENSAJES ===================== */
+var MSG_CATEGORIES=[
+ {key:'nuevo',label:'Nuevo cliente',emoji:'&#128229;'},
+ {key:'cot',label:'Cotizaciones',emoji:'&#127968;'},
+ {key:'seg',label:'Seguimiento de cotización',emoji:'&#128064;'},
+ {key:'obj',label:'Objeciones',emoji:'&#128176;'},
+ {key:'apartado',label:'Apartado / Reservación',emoji:'&#128179;'},
+ {key:'pagos',label:'Pagos y abonos',emoji:'&#129534;'},
+ {key:'doc',label:'Documentación',emoji:'&#128203;'},
+ {key:'antes',label:'Antes del viaje',emoji:'&#9992;&#65039;'},
+ {key:'durante',label:'Durante el viaje',emoji:'&#127958;&#65039;'},
+ {key:'despues',label:'Después del viaje',emoji:'&#127968;'},
+ {key:'react',label:'Reactivación',emoji:'&#128260;'},
+ {key:'cambios',label:'Cambios / Imprevistos',emoji:'&#128680;'},
+ {key:'confianza',label:'Confianza y servicio',emoji:'&#11088;'}
+];
+function catInfo(key){for(var i=0;i<MSG_CATEGORIES.length;i++)if(MSG_CATEGORIES[i].key===key)return MSG_CATEGORIES[i];return {key:key,label:key,emoji:'&#128172;'};}
+
+var MSG_TEMPLATES=[
+{id:'nuevo1',cat:'nuevo',nombre:'Primer contacto',momento:'Apenas escribe un lead nuevo por redes o WhatsApp',objetivo:'Abrir la conversación de forma cálida, sin sonar a mensaje automático',msg:'¡Hola! Un gusto saludarte, soy {{asesor}} de Rosale’s Adventures. Vi que te interesa viajar y con mucho gusto te ayudo a armar algo que se ajuste justo a lo que buscas. Para no hacerte perder tiempo, cuéntame: ¿ya tienes un destino en mente o quieres que te comparta un par de opciones?'},
+{id:'nuevo2',cat:'nuevo',nombre:'Bienvenida',momento:'Después de que el cliente respondió tu primer mensaje',objetivo:'Generar confianza y dejar claro que va a tener un proceso acompañado',msg:'Perfecto, {{nombre_cliente}}, gracias por la información. Para que estés tranquilo desde ahora: aquí te voy a acompañar en todo el proceso, desde la cotización hasta que regreses de tu viaje, así que cualquier duda me la puedes escribir directo a este número. Dame unos minutos para armarte algo bien pensado.'},
+{id:'nuevo3',cat:'nuevo',nombre:'Solicitud de información general',momento:'Cuando el lead llega sin datos, solo dijo que quiere viajar',objetivo:'Levantar la información mínima para poder cotizar',msg:'Para armarte una propuesta que valga la pena, necesito solo algunos datos rápidos: ¿para cuántas personas sería el viaje, más o menos qué fechas tienen en mente, y hay algún destino que ya te llame la atención?'},
+{id:'nuevo4',cat:'nuevo',nombre:'Solicitud de fechas',momento:'El cliente ya dio destino pero faltan fechas',objetivo:'Obtener fechas exactas o un rango tentativo para cotizar disponibilidad real',msg:'¿Ya tienen fechas más o menos definidas para el viaje, {{nombre_cliente}}? Aunque sea un rango tentativo me sirve muchísimo, porque el precio de {{destino}} puede variar bastante según la temporada, y así te cotizo algo realista desde la primera propuesta.'},
+{id:'nuevo5',cat:'nuevo',nombre:'Solicitud de número de viajeros',momento:'Antes de armar la primera cotización',objetivo:'Confirmar cuántos adultos y menores viajan para calcular ocupación y precio correcto',msg:'Una última cosa antes de cotizar: ¿cuántos adultos viajan en total y van menores de edad? Con eso te armo la cotización con el acomodo correcto de habitaciones, sin sorpresas después.'},
+{id:'nuevo6',cat:'nuevo',nombre:'Solicitud de edades de menores',momento:'El cliente ya dijo que viajan niños pero sin edad',objetivo:'Precisar edades porque cambian la política de hospedaje, tarifa y actividades',msg:'Me comentaste que van niños, ¿me confirmas sus edades? Muchos hoteles todo incluido manejan tarifas distintas o hasta gratuidad según la edad exacta, así que esto puede cambiar bastante el precio final a tu favor.'},
+{id:'nuevo7',cat:'nuevo',nombre:'Solicitud de hotel de interés',momento:'El cliente ya dio destino pero no un hotel específico',objetivo:'Detectar si ya tiene un hotel en mente o prefiere que el asesor recomiende',msg:'¿Ya tienes algún hotel en mente para {{destino}} o prefieres que te recomiende 2-3 opciones según lo que buscas (familiar, más tranquilo, con más vida nocturna, etc.)? Así no te mando 15 opciones que no te sirven.'},
+{id:'nuevo8',cat:'nuevo',nombre:'Solicitud de presupuesto',momento:'Antes de cotizar, para no perder tiempo en propuestas fuera de rango',objetivo:'Conocer el rango de presupuesto de forma natural, sin sonar invasivo',msg:'Para no mandarte opciones que no te acomoden, ¿tienes un presupuesto aproximado en mente para el viaje completo? No necesito el número exacto, con un rango me ayuda muchísimo a filtrar bien los hoteles.'},
+{id:'nuevo9',cat:'nuevo',nombre:'Cliente que solo pregunta "¿cuánto cuesta?"',momento:'El cliente escribe directo preguntando precio sin dar contexto',objetivo:'Responder con calidez sin sonar evasivo, calificando antes de tirar un precio al aire',msg:'Con gusto te cotizo, {{nombre_cliente}}. El precio cambia bastante según el hotel, las fechas y cuántas personas viajen, así que para no darte un número que después no aplique: ¿para cuántas personas sería y tienes fechas en mente?'},
+{id:'nuevo10',cat:'nuevo',nombre:'Cliente que pregunta "¿qué hoteles manejan?"',momento:'El cliente pregunta de forma general por el catálogo de hoteles',objetivo:'Guiar hacia una recomendación personalizada en vez de mandar un catálogo genérico',msg:'Manejamos varios hoteles todo incluido en Cancún, Riviera Maya, Los Cabos, Puerto Vallarta, Mazatlán y Huatulco, entre otros. Para no mandarte una lista enorme que no te sirva: ¿qué destino te llama más la atención y viajan solo adultos o también niños?'},
+{id:'cot1',cat:'cot',nombre:'Envío de cotización',momento:'Justo al mandar la cotización preparada',objetivo:'Presentar la cotización de forma clara y profesional, no solo un número',msg:'Aquí tienes tu cotización, {{nombre_cliente}}: {{hotel}}, {{destino}}, del {{fecha_llegada}} al {{fecha_salida}} ({{noches}} noches), {{adultos}} {{menores}}. Plan {{plan}}. Total: {{precio_total}}. Cualquier duda sobre qué incluye exactamente, con gusto te la resuelvo.'},
+{id:'cot2',cat:'cot',nombre:'Mensaje de acompañamiento de cotización',momento:'Justo después de enviar el PDF o link de la cotización',objetivo:'Que la cotización no se sienta un documento frío, sino acompañada',msg:'Te acabo de mandar la cotización completa. Tómate tu tiempo para revisarla con calma, y en cuanto tengas dudas —sobre el hotel, las fechas o la forma de pago— aquí estoy. No hay ninguna prisa de tu parte, solo quiero asegurarme de que te quede clarísimo antes de decidir.'},
+{id:'cot3',cat:'cot',nombre:'Explicación de qué incluye',momento:'El cliente pregunta qué trae exactamente el paquete',objetivo:'Aclarar el contenido real del paquete sin tecnicismos',msg:'Tu paquete incluye hospedaje en {{hotel}}, plan {{plan}} (todos tus alimentos y bebidas dentro del hotel) y las noches que cotizamos: {{fecha_llegada}} al {{fecha_salida}}. Lo que no incluye son propinas, gastos personales y actividades fuera del hotel, para que no haya sorpresas al llegar.'},
+{id:'cot4',cat:'cot',nombre:'Explicación del Todo Incluido',momento:'El cliente no está familiarizado con qué significa "todo incluido"',objetivo:'Educar sobre el modelo todo incluido de forma simple, generando confianza',msg:'"Todo incluido" en {{hotel}} significa que ya pagaste tus alimentos y bebidas (nacionales, y en varios casos internacionales) y el uso de albercas y áreas del hotel. Lo único extra suele ser propina si gustas dejar, spa, excursiones fuera del hotel y algún restaurante de especialidad con reservación limitada.'},
+{id:'cot5',cat:'cot',nombre:'Presentación de varias opciones',momento:'Cuando armas 2-3 alternativas para el mismo cliente',objetivo:'Ayudar a decidir sin abrumar, ordenando las opciones por criterio claro',msg:'Te preparé 3 opciones para que compares fácil: una más accesible, una que yo recomendaría por relación precio-calidad, y una más premium por si quieren consentirse un poco más. Te las mando una por una para que no se te empalme la información.'},
+{id:'cot6',cat:'cot',nombre:'Opción económica',momento:'Presentando la opción más accesible dentro de un set de propuestas',objetivo:'Posicionar la opción económica sin que se sienta "la barata"',msg:'Opción 1 — {{hotel}}: {{precio_total}} por {{noches}} noches, plan {{plan}}. Es la que mejor cuida tu presupuesto sin sacrificar que sea un hotel todo incluido de playa con buena reputación. Ideal si prefieren invertir más en actividades durante el viaje.'},
+{id:'cot7',cat:'cot',nombre:'Opción recomendada',momento:'Presentando la opción intermedia, la que el asesor recomendaría',objetivo:'Guiar la decisión hacia la opción de mejor balance sin presionar',msg:'Opción 2 — {{hotel}}: {{precio_total}}. Esta es la que yo elegiría en tu lugar: el balance entre calidad de hotel, ubicación y precio es el mejor de las tres. La mayoría de mis clientes con un perfil parecido al tuyo terminan escogiendo esta.'},
+{id:'cot8',cat:'cot',nombre:'Opción premium',momento:'Presentando la opción de mayor categoría',objetivo:'Ofrecer el upgrade sin sonar a venta forzada',msg:'Opción 3 — {{hotel}}: {{precio_total}}. Es la más completa: categoría superior de habitación, mejores restaurantes dentro del hotel y zonas más exclusivas. Si es un viaje para celebrar algo especial, vale la pena considerarla.'},
+{id:'cot9',cat:'cot',nombre:'Destacar relación calidad-precio',momento:'Cuando el cliente duda si vale la pena el precio',objetivo:'Justificar el precio con argumentos concretos, no solo afirmarlo',msg:'Entiendo que quieras estar seguro de que vale la pena, {{nombre_cliente}}. {{hotel}} tiene muy buena calificación de huéspedes que ya viajaron con nosotros, está bien ubicado dentro de {{destino}}, y el precio que te compartí ya incluye lo que normalmente sale aparte en otras cotizaciones (traslados, impuestos, todo incluido real).'},
+{id:'cot10',cat:'cot',nombre:'Las tarifas pueden cambiar',momento:'Al enviar la cotización, aclarando que el precio no está congelado indefinidamente',objetivo:'Ser transparente sobre la naturaleza dinámica de las tarifas hoteleras',msg:'Una aclaración importante: esta tarifa la tiene disponible el hotel hoy, pero como en cualquier hotel, los precios pueden ajustarse según disponibilidad, sobre todo en fechas de temporada alta. En cuanto la tengas decidida, te recomiendo apartarla para dejarla congelada a tu nombre.'},
+{id:'cot11',cat:'cot',nombre:'Disponibilidad limitada',momento:'Cuando realmente hay pocas habitaciones o categoría limitada en esas fechas',objetivo:'Comunicar urgencia real basada en datos, sin inventar presión',msg:'Te comento con toda honestidad: {{hotel}} me está mostrando disponibilidad limitada para esas fechas en la categoría que cotizamos. No te quiero presionar, solo que lo sepas para que decidas con esa información, por si quieres asegurar el espacio antes de que se agote esa categoría.'},
+{id:'cot12',cat:'cot',nombre:'Recomendación de reservar pronto',momento:'Cierre natural después de presentar la cotización, invitando a avanzar',objetivo:'Invitar al siguiente paso sin urgencia artificial',msg:'Cuando la tengas decidida, el siguiente paso es apartar con un anticipo para dejar el precio y las habitaciones aseguradas a tu nombre. No hace falta que definas todo hoy, pero entre más pronto la aseguremos, menos riesgo de que cambie la disponibilidad o el precio.'},
+{id:'seg1',cat:'seg',nombre:'Seguimiento después de enviar cotización',momento:'Mismo día o al día siguiente de enviar la cotización, sin respuesta',objetivo:'Confirmar que la cotización llegó bien y abrir espacio para dudas',msg:'Hola {{nombre_cliente}}, ¿pudiste revisar la cotización que te mandé de {{hotel}}? Quería asegurarme de que te haya llegado bien y ver si tienes alguna duda que te pueda resolver.'},
+{id:'seg2',cat:'seg',nombre:'Seguimiento 24 horas después',momento:'24 horas después de enviar la cotización, sin respuesta',objetivo:'Retomar contacto de forma ligera, sin sonar insistente',msg:'Sé que a veces el día se complica y no da tiempo de revisar con calma. Solo te recuerdo que aquí sigue tu cotización de {{destino}}, por si quieres que platiquemos algún detalle o ajustemos algo de la propuesta.'},
+{id:'seg3',cat:'seg',nombre:'Segundo seguimiento (con valor agregado)',momento:'3-4 días después, aportando información adicional',objetivo:'Dar seguimiento sin repetir el mismo mensaje, sumando valor',msg:'Se me ocurrió algo que te puede servir: si finalmente se deciden por {{hotel}}, esas fechas todavía tienen buena disponibilidad de habitación con vista, que normalmente se agota primero. Cualquier cosa que necesites ajustar de la cotización, aquí ando.'},
+{id:'seg4',cat:'seg',nombre:'Tercer seguimiento (directo)',momento:'Una semana después, seguimiento más directo pero amable',objetivo:'Preguntar abiertamente en qué va su decisión, sin presionar',msg:'{{nombre_cliente}}, ¿cómo vas pensando lo de tu viaje a {{destino}}? No te quiero saturar de mensajes, pero prefiero preguntarte directamente a que sientas que te dejé de atender. Cuéntame en qué parte del proceso te quedaste.'},
+{id:'seg5',cat:'seg',nombre:'Seguimiento cuando dejó de responder',momento:'El cliente estaba respondiendo activamente y de pronto dejó de contestar',objetivo:'Reabrir la conversación sin sonar a reclamo',msg:'Oye, ¿todo bien? Noté que dejamos la conversación a la mitad y no quiero que sientas que te voy a estar persiguiendo, solo confirmar que sigues interesado en el viaje o si cambió algo de tu lado que debería saber.'},
+{id:'seg6',cat:'seg',nombre:'Vio la cotización pero no respondió',momento:'Confirmación de lectura (doble check) sin respuesta posterior',objetivo:'Preguntar directo qué le detuvo a decidir, de forma natural',msg:'Vi que revisaste la cotización, {{nombre_cliente}}. Cuéntame honestamente: ¿algo no te terminó de convencer (precio, hotel, fechas) o simplemente no has tenido tiempo de sentarte a decidir? Con gusto ajusto lo que necesites.'},
+{id:'seg7',cat:'seg',nombre:'Seguimiento amable sin presión',momento:'Cuando el cliente pidió tiempo explícitamente',objetivo:'Respetar el tiempo pedido sin desaparecer del todo',msg:'Tranquilo, tómate el tiempo que necesites. Solo te dejo un mensaje para que sepas que aquí sigo disponible, sin ninguna prisa de mi parte. Cuando quieras retomarlo, aquí me tienes.'},
+{id:'seg8',cat:'seg',nombre:'Seguimiento con urgencia de tarifa',momento:'Cuando la tarifa cotizada tiene fecha de vencimiento real',objetivo:'Comunicar el límite real de la tarifa sin inventar presión',msg:'Te aviso porque es información real, no para presionarte: la tarifa que te cotizamos para {{hotel}} está vigente hasta {{fecha_limite_pago}}. Después de esa fecha el hotel puede actualizar precios. Si sigue interesándote, sería buen momento para apartar y dejarla congelada.'},
+{id:'seg9',cat:'seg',nombre:'Último seguimiento',momento:'Después de varios intentos sin respuesta, cierre del ciclo activo',objetivo:'Cerrar el seguimiento activo dejando la puerta abierta, sin sonar a reclamo',msg:'No he vuelto a saber de ti, así que voy a dejar de darte seguimiento activo para no ser inoportuno. Tu cotización de {{destino}} se queda guardada de todas formas, y en cuanto quieras retomarla, aquí sigo. ¡Que tengas excelente semana!'},
+{id:'seg10',cat:'seg',nombre:'Reactivación semanas o meses después',momento:'Semanas o meses después del último contacto, retomando',objetivo:'Reabrir con contexto nuevo, no repitiendo la cotización vieja',msg:'Hola {{nombre_cliente}}, tiempo sin saludarte. Te escribo porque me acordé de que estabas viendo lo de {{destino}} hace un tiempo, ¿sigue en pie la idea? Si quieres te actualizo precios, porque probablemente cambiaron desde la última vez que hablamos.'}
+];
+MSG_TEMPLATES=MSG_TEMPLATES.concat([
+{id:'obj1',cat:'obj',nombre:'"Está caro"',momento:'El cliente dice directamente que el precio le parece alto',objetivo:'Entender qué compara antes de justificar, sin ponerse a la defensiva',msg:'Te entiendo, {{nombre_cliente}}. Antes de ajustar algo, ¿me cuentas contra qué lo estás comparando —otro hotel, otra agencia, o el presupuesto que tenían en mente? Así te muestro exactamente qué trae esta cotización de más, o buscamos juntos una opción que sí encaje.'},
+{id:'obj2',cat:'obj',nombre:'"Déjame pensarlo"',momento:'El cliente pide tiempo sin dar razón específica',objetivo:'Detectar la verdadera duda detrás del "pensarlo" sin presionar',msg:'Claro, tómate el tiempo que necesites. Solo para poder ayudarte mejor mientras lo piensas: ¿hay algo puntual que te esté haciendo dudar? A veces es el precio, a veces las fechas, y si sé cuál es puedo ayudarte a resolverlo antes de que decidas.'},
+{id:'obj3',cat:'obj',nombre:'"Déjame consultarlo con mi esposo/esposa"',momento:'El cliente necesita validar la decisión con su pareja',objetivo:'Facilitar esa conversación sin presionar, ofreciendo materiales de apoyo',msg:'Por supuesto, es una decisión que deben tomar juntos. Si te sirve, te puedo mandar un resumen cortito de la cotización para que se lo compartas tal cual, o si prefieren, con gusto les explico yo directamente por aquí cualquier duda que les surja entre los dos.'},
+{id:'obj4',cat:'obj',nombre:'"Lo voy a revisar"',momento:'Respuesta vaga sin compromiso de tiempo',objetivo:'Poner un siguiente paso concreto sin sonar impositivo',msg:'Perfecto. Para no dejarlo tan abierto, ¿te parece si te escribo en un par de días para ver cómo vas? Así no se te va a pasar entre el ajetreo del día a día, y tú tampoco tienes que estar pendiente de escribirme.'},
+{id:'obj5',cat:'obj',nombre:'"Voy a comparar"',momento:'El cliente compara con otras agencias antes de decidir',objetivo:'Apoyar la comparación con confianza en vez de sentirse amenazado',msg:'Me parece bien que compares, es tu dinero y tu viaje. Solo un consejo desde mi experiencia: cuando compares, revisa que estén incluyendo exactamente lo mismo (traslados, impuestos, tipo de habitación), porque ahí es donde más varían los precios "aparentemente" más baratos. Cualquier duda al comparar, aquí estoy.'},
+{id:'obj6',cat:'obj',nombre:'"Encontré algo más barato"',momento:'El cliente reporta una oferta de menor precio en otro lado',objetivo:'Validar la información sin desacreditar, comparando con datos reales',msg:'Gracias por decírmelo, así puedo ayudarte mejor. ¿Me compartes qué incluye exactamente esa otra opción? A veces el precio más bajo no incluye traslados o es una categoría de habitación distinta, y quiero asegurarme de que estés comparando manzanas con manzanas antes de decidir.'},
+{id:'obj7',cat:'obj',nombre:'"En otro lugar me lo dan más barato"',momento:'El cliente compara con otra agencia específicamente',objetivo:'Diferenciar el valor del servicio, no solo el precio del paquete',msg:'Es válido que busques el mejor precio. Lo que yo te puedo garantizar es que si algo sale mal antes o durante tu viaje, tienes a alguien real respondiéndote, no un centro de atención genérico. Si me compartes los detalles de esa otra cotización, reviso si puedo igualarla o si hay una diferencia real que valga la pena explicarte.'},
+{id:'obj8',cat:'obj',nombre:'"Ahorita no tengo dinero"',momento:'Cliente interesado pero sin liquidez actual',objetivo:'Ofrecer alternativa de apartado sin presionar por el pago completo',msg:'Te entiendo perfecto, no todos tenemos el dinero completo disponible de un día para otro. Por eso se puede apartar con un anticipo pequeño para dejar el precio congelado, y vas completando el resto en abonos antes de la fecha de viaje. ¿Quieres que te comparta cómo funcionan los plazos?'},
+{id:'obj9',cat:'obj',nombre:'"Después te confirmo"',momento:'El cliente pospone la decisión sin fecha clara',objetivo:'Convertir un "después" vago en un compromiso concreto',msg:'Sin problema. Para organizarme de mi lado, ¿tienes una idea de cuándo sería ese "después" —esta semana, la próxima? No es para presionarte, es solo para saber si te doy seguimiento pronto o te dejo tranquilo un poco más de tiempo.'},
+{id:'obj10',cat:'obj',nombre:'"Quiero esperar"',momento:'El cliente decide esperar sin motivo de precio o duda específica',objetivo:'Respetar la decisión, dejando claro el único riesgo real',msg:'Está perfecto esperar si así lo sientes mejor. Lo único que te comento con honestidad es que el precio de hoy no está garantizado más adelante, sobre todo si esperas hasta más cerca de la fecha. Fuera de eso, no hay ninguna prisa, tú decides tu tiempo.'},
+{id:'obj11',cat:'obj',nombre:'"No estoy seguro"',momento:'El cliente expresa duda general sin especificar de qué',objetivo:'Explorar la raíz de la inseguridad con una pregunta abierta',msg:'Es normal dudar en una decisión así, sobre todo si es una inversión importante para tu familia. ¿Qué es lo que te genera más inseguridad —el hotel, el destino, la agencia, o simplemente decidirte a gastar en esto ahora? Cuéntame y vemos juntos cómo resolverlo.'},
+{id:'obj12',cat:'obj',nombre:'"Tengo que pedir permiso en el trabajo"',momento:'El cliente depende de aprobación de vacaciones laborales',objetivo:'Dar flexibilidad real sin perder el avance de la venta',msg:'Total, primero hay que confirmar eso. Mientras tanto, si quieres, apartamos el espacio con un anticipo pequeño para no perder la tarifa mientras te confirman tus días, y si por algo no se pudiera, platicamos las opciones sin ningún compromiso.'},
+{id:'obj13',cat:'obj',nombre:'"No sé todavía las fechas"',momento:'El cliente está interesado pero sin fechas definidas',objetivo:'Avanzar en la cotización con fechas tentativas mientras se define',msg:'No hay problema, te cotizo con un rango tentativo de fechas para que tengas una idea de precio, y en cuanto las tengan más claras la ajustamos. Solo ten en cuenta que el precio puede variar un poco según el mes final que elijan, sobre todo si cae en temporada alta.'},
+{id:'obj14',cat:'obj',nombre:'"Quiero ver otras opciones"',momento:'El cliente pide más alternativas antes de decidir',objetivo:'Ofrecer alternativas reales sin sonar a que se está regateando',msg:'Claro, con gusto te armo un par de opciones más para que compares. Para acertarle mejor esta vez: ¿qué te gustaría que cambiara de la primera propuesta —precio, categoría de hotel, ubicación, o el destino completo?'},
+{id:'obj15',cat:'obj',nombre:'"¿Me puedes mejorar el precio?"',momento:'El cliente pide descuento directo',objetivo:'Responder con honestidad sobre márgenes sin cerrar la puerta a alternativas',msg:'Te soy honesto: el precio que te di ya es el que negocié directamente con el hotel, no traigo mucho margen extra para bajarlo. Lo que sí puedo hacer es buscarte una categoría de habitación distinta o fechas con mejor tarifa si el presupuesto es lo que más te importa ajustar.'},
+{id:'obj16',cat:'obj',nombre:'"¿Me haces descuento?"',momento:'Petición de descuento en tono directo/casual',objetivo:'Manejar la petición de descuento sin regalar margen innecesariamente',msg:'Entiendo que siempre se agradece un descuento. Lo que te puedo ofrecer con seguridad es el mejor precio disponible del hotel para esas fechas, sin inflar nada de mi lado. Si el presupuesto es ajustado, mejor busquemos juntos una opción que ya entre en tu rango, en vez de forzar un descuento sobre esta.'},
+{id:'obj17',cat:'obj',nombre:'"¿Por qué tengo que dar anticipo?"',momento:'El cliente cuestiona la necesidad de pagar por adelantado',objetivo:'Explicar la lógica del anticipo de forma transparente',msg:'El anticipo es lo que le confirma al hotel que la reserva es real, y es lo que nos permite congelarte el precio y bloquear las habitaciones a tu nombre. Sin el anticipo, la disponibilidad y la tarifa que viste hoy no están garantizadas para cuando decidas confirmar.'},
+{id:'obj18',cat:'obj',nombre:'"¿Qué pasa si cancelo?"',momento:'El cliente pregunta por política de cancelación antes de comprometerse',objetivo:'Ser transparente con las condiciones reales, sin minimizar ni asustar',msg:'Buena pregunta, prefiero que la tengas clara desde antes. Las condiciones de cancelación dependen de la política del hotel para esa tarifa específica, y te las explico con detalle antes de que apartes, para que decidas con toda la información y sin sorpresas.'},
+{id:'obj19',cat:'obj',nombre:'"¿Y si cambia el precio?"',momento:'El cliente pregunta si el precio cotizado puede subir',objetivo:'Aclarar que el precio se congela solo al apartar, no antes',msg:'Mientras no apartes, el precio puede cambiar porque depende de la disponibilidad del hotel, igual que un boleto de avión. En el momento en que apartas con el anticipo, ese precio queda congelado a tu nombre sin importar lo que pase con la tarifa después.'},
+{id:'obj20',cat:'obj',nombre:'"¿Es confiable la agencia?"',momento:'Cliente nuevo pregunta directamente por la confiabilidad de la agencia',objetivo:'Responder con transparencia y sin exagerar, generando confianza real',msg:'Muy válida tu pregunta, yo también sería cauteloso antes de dar un anticipo. Trabajamos directamente con los hoteles, tengo clientes que ya viajaron con nosotros y con gusto te comparto fotos o el contacto de alguno que acepte darte una referencia directa, si te ayuda a decidir con más confianza.'},
+{id:'res1',cat:'apartado',nombre:'Cómo apartar',momento:'El cliente decide seguir adelante, necesita saber el siguiente paso',objetivo:'Explicar el proceso de apartado de forma simple y sin fricción',msg:'Para apartar es muy sencillo: con un anticipo de {{anticipo}} dejamos tu lugar asegurado en {{hotel}} con el precio de {{precio_total}} congelado a tu nombre. El resto lo vas cubriendo en abonos antes de la fecha límite. ¿Te comparto los datos para hacer el pago?'},
+{id:'res2',cat:'apartado',nombre:'Solicitud de datos para reservar',momento:'El cliente ya decidió apartar, falta capturar sus datos',objetivo:'Recabar la información necesaria para formalizar la reserva',msg:'Para formalizar tu reserva necesito el nombre completo de cada viajero tal como aparece en su identificación oficial, y en el caso de los menores, su edad exacta. Con eso ya puedo generar la reserva a nombre de todos correctamente.'},
+{id:'res3',cat:'apartado',nombre:'Confirmación de recepción de datos',momento:'Justo después de que el cliente envía sus datos',objetivo:'Confirmar recepción y dar tranquilidad de que el proceso avanza',msg:'Recibido, {{nombre_cliente}}, ya tengo todos los datos. Voy a generar la reserva con esta información, y en cuanto el hotel me confirme, te aviso por aquí mismo. Gracias por la rapidez.'},
+{id:'res4',cat:'apartado',nombre:'Solicitud de anticipo',momento:'Datos capturados, falta el pago del anticipo para apartar',objetivo:'Pedir el anticipo con claridad, incluyendo monto y forma de pago',msg:'Ya con tus datos listos, solo falta el anticipo de {{anticipo}} para dejar apartado tu lugar en {{hotel}}. Te comparto los datos de pago: en cuanto lo realices, mándame tu comprobante y quedas asegurado con el precio de {{precio_total}}.'},
+{id:'res5',cat:'apartado',nombre:'Recordatorio de anticipo',momento:'El cliente dijo que iba a pagar el anticipo pero aún no llega',objetivo:'Recordar de forma amable sin sonar a cobranza agresiva',msg:'Solo te recuerdo, sin ninguna prisa, que sigue pendiente el anticipo de {{anticipo}} para dejar apartado tu espacio en {{hotel}}. En cuanto puedas hacerlo me avisas y seguimos con el proceso.'},
+{id:'res6',cat:'apartado',nombre:'Confirmación de anticipo recibido',momento:'Justo al recibir el comprobante de pago del anticipo',objetivo:'Confirmar recepción y dar certeza de que ya quedó asegurado',msg:'¡Recibido! Tu anticipo de {{anticipo}} ya quedó registrado. A partir de este momento tu lugar en {{hotel}} está oficialmente apartado con el precio de {{precio_total}} congelado a tu nombre. En un momento te comparto los detalles de tu reservación.'},
+{id:'res7',cat:'apartado',nombre:'Confirmación de reserva',momento:'Después de que el hotel confirma disponibilidad y folio',objetivo:'Notificar formalmente que la reserva está confirmada con el hotel',msg:'¡Excelentes noticias, {{nombre_cliente}}! Tu reserva en {{hotel}} ya está confirmada directamente con el hotel, número de reserva {{numero_reserva}}. Del {{fecha_llegada}} al {{fecha_salida}}, {{adultos}} {{menores}}. Guarda este mensaje, más adelante te mando toda la información para el viaje.'},
+{id:'res8',cat:'apartado',nombre:'Explicación de condiciones',momento:'Al momento de apartar, para dejar claras las reglas',objetivo:'Ser transparente con las condiciones antes de que el cliente comprometa dinero',msg:'Antes de que confirmes el anticipo, te dejo claras las condiciones de esta tarifa: fecha límite de liquidación {{fecha_limite_pago}}, y las políticas de cambios o cancelación que aplican para esta categoría de habitación en {{hotel}}. Cualquier duda sobre esto, pregúntame antes de pagar, no después.'},
+{id:'res9',cat:'apartado',nombre:'Aviso de tarifa por vencer',momento:'La tarifa cotizada está por expirar sin que el cliente haya apartado',objetivo:'Avisar con tiempo real, no urgencia artificial',msg:'Te aviso con tiempo: la tarifa que tienes cotizada en {{hotel}} vence el {{fecha_limite_pago}}. Si sigue interesándote, este sería el momento de apartar para no perder ni el precio ni la disponibilidad que tienes ahorita.'},
+{id:'res10',cat:'apartado',nombre:'Reservación no confirmada hasta recibir pago',momento:'El cliente asume que ya está reservado solo por haber cotizado',objetivo:'Aclarar que la reserva formal requiere anticipo, evitando malentendidos',msg:'Para que quede clarísimo: mientras no recibamos el anticipo, la disponibilidad y el precio que viste no están garantizados, es solo una cotización. En cuanto se realice el pago del anticipo, ahí sí queda formalmente reservado y protegido a tu nombre.'},
+{id:'res11',cat:'apartado',nombre:'Confirmación de que el espacio quedó asegurado',momento:'Cierre del proceso de apartado, mensaje de tranquilidad',objetivo:'Dar cierre emocional positivo al momento de la reserva',msg:'Listo, {{nombre_cliente}}, ya está todo asegurado de tu lado. Ahora solo queda ir completando el saldo antes de la fecha límite y prepararse para disfrutar {{destino}}. Cualquier duda que te vaya surgiendo en el camino, aquí sigo.'}
+]);
+MSG_TEMPLATES=MSG_TEMPLATES.concat([
+{id:'pag1',cat:'pagos',nombre:'Recordatorio de próximo abono',momento:'Se acerca la fecha de un abono programado',objetivo:'Recordar el pago con anticipación, sin sonar a cobranza fría',msg:'Hola {{nombre_cliente}}, solo un recordatorio amable: se acerca tu próximo abono para el viaje a {{destino}}. Tu saldo pendiente actual es de {{saldo}}. Cualquier duda sobre montos o fechas, aquí estoy.'},
+{id:'pag2',cat:'pagos',nombre:'Recordatorio de fecha límite',momento:'Se acerca la fecha límite de liquidación total',objetivo:'Avisar con tiempo suficiente para evitar que se pase la fecha',msg:'Te aviso con anticipación: la fecha límite para liquidar tu viaje a {{destino}} es el {{fecha_limite_pago}}. Tu saldo pendiente es de {{saldo}}. Si necesitas dividirlo en más de un abono antes de esa fecha, con gusto lo vemos juntos.'},
+{id:'pag3',cat:'pagos',nombre:'Abono pendiente',momento:'Un abono programado no se ha recibido a tiempo',objetivo:'Dar seguimiento al pago faltante sin presionar de forma incómoda',msg:'Vi que todavía no me llega el abono que teníamos programado. ¿Todo bien de tu lado? Si necesitas correr la fecha unos días no hay ningún problema, solo avísame para llevar bien el control de tu cuenta.'},
+{id:'pag4',cat:'pagos',nombre:'Abono recibido',momento:'Justo al recibir un pago parcial',objetivo:'Confirmar recepción y mostrar avance hacia la liquidación',msg:'¡Recibido! Tu abono ya quedó registrado. Con este pago tu saldo restante queda en {{saldo}}. Vas muy bien encaminado para tu viaje a {{destino}}.'},
+{id:'pag5',cat:'pagos',nombre:'Saldo restante',momento:'El cliente pregunta cuánto le falta por pagar',objetivo:'Dar claridad total del estado de cuenta en un solo mensaje',msg:'Claro, aquí tienes tu resumen: total del paquete {{precio_total}}, ya llevas pagado {{anticipo}}, y tu saldo pendiente es de {{saldo}}, con fecha límite el {{fecha_limite_pago}}.'},
+{id:'pag6',cat:'pagos',nombre:'Aviso de liquidación',momento:'Se acerca el momento de pagar el último abono',objetivo:'Anunciar que se acerca el pago final',msg:'{{nombre_cliente}}, ya casi terminas de pagar tu viaje a {{destino}}. Con un último abono de {{saldo}} quedas completamente liquidado y ya nada más queda pendiente antes de viajar. ¿Te comparto los datos para este último pago?'},
+{id:'pag7',cat:'pagos',nombre:'Confirmación de liquidación',momento:'Justo al recibir el último pago',objetivo:'Celebrar el cierre del pago, generando cierre positivo',msg:'¡Felicidades, {{nombre_cliente}}! Tu viaje a {{destino}} quedó completamente liquidado. Ya no debes nada, solo falta que se acerque la fecha para que te mande toda la información final del viaje.'},
+{id:'pag8',cat:'pagos',nombre:'Pago atrasado',momento:'El abono está retrasado más allá de lo razonable',objetivo:'Dar seguimiento firme pero respetuoso, priorizando la relación',msg:'Te escribo porque tu abono lleva unos días de retraso y quiero asegurarme de que tu reserva no tenga ningún riesgo. ¿Tienes fecha estimada para ponerte al corriente? Si hay algún imprevisto de tu lado, platicamos opciones juntos.'},
+{id:'pag9',cat:'pagos',nombre:'Cliente que no ha enviado comprobante',momento:'El cliente dice que ya pagó pero no ha compartido el comprobante',objetivo:'Pedir el comprobante sin sonar desconfiado',msg:'Perfecto que ya hiciste el pago. Para poder registrarlo correctamente de mi lado, ¿me compartes el comprobante o captura de la transferencia? Así queda todo documentado y sin ningún malentendido más adelante.'},
+{id:'pag10',cat:'pagos',nombre:'Solicitud de comprobante',momento:'Momento estándar de solicitar comprobante tras cualquier pago',objetivo:'Estandarizar el pedido de comprobante como parte del proceso, no como sospecha',msg:'Para llevar tu cuenta al día, te pido siempre el comprobante de cada pago que hagas —es solo un tema de orden administrativo, así ambos tenemos el mismo registro de cuánto llevas pagado.'},
+{id:'pag11',cat:'pagos',nombre:'Confirmación de comprobante recibido',momento:'Justo al recibir y validar el comprobante enviado',objetivo:'Cerrar el ciclo del pago con confirmación clara',msg:'Comprobante recibido y validado, gracias. Ya quedó actualizado tu estado de cuenta: saldo pendiente de {{saldo}}. Cualquier otra duda sobre tus pagos, aquí estoy.'},
+{id:'doc1',cat:'doc',nombre:'Solicitud de nombres completos',momento:'Al iniciar el proceso de reserva formal',objetivo:'Recabar nombres exactos como aparecen en identificación',msg:'Para generar la reserva correctamente, necesito el nombre completo de cada uno de los viajeros, tal como aparece en su identificación oficial (incluyendo a los menores). Cualquier error aquí puede generar problemas al check-in, así que mejor lo revisamos con calma.'},
+{id:'doc2',cat:'doc',nombre:'Solicitud de identificaciones',momento:'Cuando el hotel o la aerolínea requiere copia de identificación',objetivo:'Pedir documentos de forma clara, explicando el motivo',msg:'El hotel/aerolínea nos pide copia de identificación oficial de cada viajero adulto para completar el proceso de reserva. Si me la puedes mandar por aquí (foto o PDF), yo me encargo del resto.'},
+{id:'doc3',cat:'doc',nombre:'Solicitud de datos faltantes',momento:'Cuando falta información puntual para cerrar el expediente',objetivo:'Puntualizar exactamente qué falta, sin generar confusión',msg:'Ya casi tengo completo tu expediente, {{nombre_cliente}}, solo me falta confirmar un par de datos de tu viaje a {{destino}}. En cuanto me los confirmes, queda todo listo de nuestro lado.'},
+{id:'doc4',cat:'doc',nombre:'Confirmación de datos recibidos',momento:'Después de recibir toda la documentación solicitada',objetivo:'Confirmar que ya no falta nada por parte del cliente',msg:'Perfecto, ya tengo toda la información y documentos que necesitaba. De aquí en adelante ya no tienes que preocuparte por nada de papeleo, yo me encargo de que todo quede correctamente registrado con el hotel.'},
+{id:'doc5',cat:'doc',nombre:'Confirmación del acomodo de habitaciones',momento:'Al definir cómo se van a distribuir las habitaciones del grupo',objetivo:'Confirmar el acomodo exacto antes de generar la reserva final',msg:'Te confirmo cómo va quedando el acomodo: {{habitaciones}} habitación(es) tipo {{tipo_habitacion}} para {{adultos}} {{menores}}. ¿Así está correcto o prefieres que lo ajustemos antes de generar la reserva?'},
+{id:'doc6',cat:'doc',nombre:'Confirmación de edades de menores',momento:'Doble check de edades antes de generar la reserva formal',objetivo:'Confirmar edades exactas para evitar problemas de tarifa al check-in',msg:'Última confirmación antes de generar la reserva: las edades de los menores que viajan son las que me diste, {{menores}}, ¿verdad? El hotel es estricto con esto porque cambia la tarifa, así que mejor confirmarlo dos veces.'},
+{id:'doc7',cat:'doc',nombre:'Confirmación de número de habitaciones',momento:'Grupos grandes donde se necesitan varias habitaciones',objetivo:'Cerrar el número exacto de habitaciones a reservar',msg:'Para tu grupo de {{adultos}}, ¿confirmamos {{habitaciones}} habitaciones? Si prefieren distribuirse distinto (más habitaciones para más privacidad, o menos para ahorrar), dime y ajusto la reserva antes de confirmarla con el hotel.'},
+{id:'doc8',cat:'doc',nombre:'Confirmación de tipo de habitación',momento:'Al cerrar detalles finales de la reserva',objetivo:'Confirmar categoría exacta de habitación reservada',msg:'Tu habitación queda confirmada como {{tipo_habitacion}} en {{hotel}}. Si en algún momento quieres cotizar un upgrade de categoría (vista al mar, club, etc.), avísame y reviso disponibilidad y diferencia de precio.'},
+{id:'doc9',cat:'doc',nombre:'Confirmación de fechas',momento:'Última confirmación de fechas antes de generar la reserva',objetivo:'Evitar errores de fecha, el más costoso de corregir después',msg:'Última revisión antes de mandar todo al hotel: check-in {{fecha_llegada}}, check-out {{fecha_salida}}, {{noches}} noches. ¿Estas fechas son correctas? Prefiero confirmarlo contigo antes que corregirlo después.'},
+{id:'ant1',cat:'antes',nombre:'30 días antes',momento:'Exactamente 30 días antes de la fecha de viaje',objetivo:'Abrir la cuenta regresiva y verificar que todo esté en orden con tiempo',msg:'¡Ya falta un mes para tu viaje a {{destino}}! Te escribo para revisar que todo esté en orden: documentos, pagos y cualquier duda que te haya surgido. Si tienes tiempo, revisamos juntos el checklist antes de que se acerque más la fecha.'},
+{id:'ant2',cat:'antes',nombre:'15 días antes',momento:'15 días antes del viaje',objetivo:'Empezar a compartir información práctica del viaje',msg:'Quedan 15 días para tu viaje a {{destino}}. En estos días te voy a ir mandando información útil: documentación necesaria, horarios de check-in y recomendaciones para que llegues sin ningún imprevisto.'},
+{id:'ant3',cat:'antes',nombre:'7 días antes',momento:'7 días antes del viaje',objetivo:'Confirmar que todo esté listo y resolver últimas dudas',msg:'Una semana para tu viaje, {{nombre_cliente}}. Buen momento para confirmar: identificaciones vigentes de todos los viajeros, cualquier documento extra que necesiten, y si te queda alguna duda de último momento sobre {{hotel}}.'},
+{id:'ant4',cat:'antes',nombre:'3 días antes',momento:'3 días antes del viaje',objetivo:'Recordatorios prácticos previos al viaje',msg:'Ya nada más faltan 3 días. Te recomiendo empezar a armar maleta, tener a la mano tus identificaciones y guardar el número de reserva {{numero_reserva}} en tu celular por si lo piden al check-in.'},
+{id:'ant5',cat:'antes',nombre:'1 día antes',momento:'Un día antes del viaje',objetivo:'Generar tranquilidad y confirmar los últimos detalles logísticos',msg:'¡Mañana es el gran día! Solo confirma que llevas tus identificaciones, el número de reserva {{numero_reserva}} y llegar con tiempo suficiente. Cualquier imprevisto de último momento, escríbeme directo a este número.'},
+{id:'ant6',cat:'antes',nombre:'Recordatorio de viaje',momento:'Cualquier punto de la cuenta regresiva donde quieras reforzar el recordatorio',objetivo:'Recordatorio general de que el viaje se acerca',msg:'Solo pasando a recordarte que tu viaje a {{destino}} en {{hotel}} se acerca ({{fecha_llegada}}). Cualquier cosa que necesites revisar antes de la fecha, este es buen momento para preguntarme.'},
+{id:'ant7',cat:'antes',nombre:'Recomendaciones antes de viajar',momento:'Días antes del viaje, información práctica de valor',objetivo:'Dar recomendaciones útiles que generen percepción de acompañamiento experto',msg:'Un par de recomendaciones para {{destino}}: lleva protector solar (suele salir más caro comprarlo allá), efectivo en pesos para propinas, y ropa ligera para el clima de playa. Si necesitas más recomendaciones específicas del hotel, con gusto te las comparto.'},
+{id:'ant8',cat:'antes',nombre:'Documentación necesaria',momento:'Recordatorio específico de documentos requeridos',objetivo:'Evitar contratiempos en check-in por documentación faltante',msg:'Para tu viaje necesitas identificación oficial vigente de cada adulto, y en el caso de menores, su documento correspondiente. Si alguno de los menores viaja con un solo padre, te recomiendo llevar también el permiso notariado correspondiente por cualquier revisión.'},
+{id:'ant9',cat:'antes',nombre:'Horarios de check-in',momento:'Información logística sobre horarios del hotel',objetivo:'Evitar que lleguen antes de tiempo y se frustren esperando',msg:'El check-in en {{hotel}} es a partir de las {{hora_check_in}} y el check-out es a las {{hora_check_out}}. Si llegan antes, normalmente puedes dejar el equipaje y disfrutar las áreas del hotel mientras se libera tu habitación.'},
+{id:'ant10',cat:'antes',nombre:'Información importante del hotel',momento:'Compartir detalles operativos específicos del hotel',objetivo:'Anticipar información que reduzca fricción a la llegada',msg:'Te comparto info importante de {{hotel}}: algunos restaurantes de especialidad requieren reservación desde el primer día, así que te recomiendo pasar a agendar en cuanto hagas check-in si quieren asegurar mesa en los que más les interesen.'},
+{id:'ant11',cat:'antes',nombre:'Recordatorio de llevar identificación',momento:'Recordatorio puntual, cercano a la fecha de viaje',objetivo:'Reforzar el punto más común de contratiempos en viajes',msg:'Un recordatorio puntual: no olvides llevar identificación oficial vigente de todos los viajeros, sin excepción. Es la causa más común de contratiempos al check-in y es lo más fácil de evitar revisándolo con anticipación.'},
+{id:'ant12',cat:'antes',nombre:'Buenos deseos antes del viaje',momento:'Justo antes de que el cliente salga de viaje',objetivo:'Cerrar el acompañamiento pre-viaje con calidez humana',msg:'¡Que lo disfrutes muchísimo, {{nombre_cliente}}! Fue un gusto acompañarte en todo este proceso. Cualquier cosa que se les ofrezca allá, aunque sea de madrugada, aquí está mi número. ¡Buen viaje!'}
+]);
+MSG_TEMPLATES=MSG_TEMPLATES.concat([
+{id:'dur1',cat:'durante',nombre:'Mensaje de bienvenida al destino',momento:'El día que llega al destino',objetivo:'Dar la bienvenida y recordar disponibilidad durante el viaje',msg:'¡Bienvenido a {{destino}}, {{nombre_cliente}}! Espero que la llegada haya sido tranquila. Cualquier cosa que necesites durante tu estancia en {{hotel}}, aquí sigo disponible, no dudes en escribirme.'},
+{id:'dur2',cat:'durante',nombre:'Confirmación de llegada',momento:'Poco después del check-in',objetivo:'Confirmar que la llegada y el check-in salieron sin problemas',msg:'¿Cómo llegaste? ¿Todo salió bien en el check-in y la habitación es como esperabas? Cualquier detalle que no cuadre con lo cotizado, avísame de inmediato para ayudarte a resolverlo con el hotel.'},
+{id:'dur3',cat:'durante',nombre:'Preguntar cómo va su estancia',momento:'A la mitad del viaje aproximadamente',objetivo:'Mostrar interés genuino sin ser invasivo durante sus vacaciones',msg:'¿Cómo la están pasando en {{hotel}}? Espero que estén disfrutando muchísimo. No te robo más tiempo de tus vacaciones, solo quería saber que todo va bien.'},
+{id:'dur4',cat:'durante',nombre:'Atención ante algún inconveniente',momento:'El cliente reporta un problema durante su estancia',objetivo:'Responder rápido y con calma ante un problema real',msg:'Lamento que estés pasando por esto. Cuéntame con el mayor detalle posible qué está pasando, y me pongo en contacto con el hotel de inmediato para ayudarte a resolverlo lo más rápido posible.'},
+{id:'dur5',cat:'durante',nombre:'Seguimiento de satisfacción',momento:'Cerca del final de la estancia, antes del checkout',objetivo:'Detectar cualquier inconformidad mientras aún se puede resolver',msg:'Ya casi terminando tu estancia en {{hotel}}, ¿hay algo que te hubiera gustado que fuera diferente? Prefiero saberlo ahora, mientras todavía estás ahí y puedo gestionar algo con el hotel si hace falta.'},
+{id:'dur6',cat:'durante',nombre:'Mensaje de despedida',momento:'El día que el cliente hace checkout',objetivo:'Cerrar el viaje con calidez y abrir la puerta al regreso',msg:'Espero que hayan tenido un viaje increíble. Buen regreso a casa, {{nombre_cliente}}, y en cuanto aterrices me cuentas cómo te fue, me encanta saber cómo les fue a mis clientes.'},
+{id:'des1',cat:'despues',nombre:'Bienvenida de regreso',momento:'Justo después de que el cliente regresó de su viaje',objetivo:'Dar la bienvenida de vuelta con calidez',msg:'¡Bienvenido de regreso, {{nombre_cliente}}! Espero que el viaje a {{destino}} haya sido todo lo que esperabas. Cuéntame cómo te fue cuando tengas un momento.'},
+{id:'des2',cat:'despues',nombre:'Preguntar cómo estuvo su viaje',momento:'Días después del regreso',objetivo:'Abrir la conversación de retroalimentación de forma genuina',msg:'¿Cómo estuvo el viaje en general? Me encanta saber esos detalles: qué les gustó más, si algo no cumplió lo que esperaban, y cualquier cosa que me ayude a seguir recomendando bien a mis clientes.'},
+{id:'des3',cat:'despues',nombre:'Solicitar opinión',momento:'Después de que el cliente comparte cómo le fue',objetivo:'Pedir una opinión más estructurada sobre el servicio completo',msg:'Me encantaría conocer tu opinión honesta sobre todo el proceso, no solo el hotel: la cotización, el acompañamiento, la reserva. ¿Qué te gustó y qué podríamos mejorar para la próxima vez?'},
+{id:'des4',cat:'despues',nombre:'Solicitar reseña',momento:'Una vez confirmado que el cliente quedó satisfecho',objetivo:'Pedir una reseña pública de forma directa pero amable',msg:'Si quedaste contento con el servicio, ¿me ayudarías dejando una reseña rápida? Me ayuda muchísimo a que más familias como la tuya confíen en nosotros. Te paso el link para que te tome literalmente un minuto: {{link_cotizacion}}'},
+{id:'des5',cat:'despues',nombre:'Solicitar recomendación',momento:'Cliente satisfecho, buen momento para pedir referidos',objetivo:'Activar el boca a boca de forma natural, no forzada',msg:'Si tienes algún familiar o amigo pensando en viajar, me encantaría que me tuvieras en mente para ayudarlos. Cada recomendación tuya significa muchísimo para el negocio, y por supuesto, cuido a quien me refieras igual que te cuidé a ti.'},
+{id:'des6',cat:'despues',nombre:'Autorización para usar fotos/testimonio',momento:'El cliente compartió fotos bonitas del viaje',objetivo:'Pedir permiso explícito antes de usar contenido del cliente',msg:'Tus fotos del viaje se ven increíbles. ¿Me das permiso de compartir alguna en nuestras redes (sin datos personales, claro)? Sería un gusto mostrar la experiencia real de un cliente, pero solo si tú estás de acuerdo.'},
+{id:'des7',cat:'despues',nombre:'Invitación para volver a reservar',momento:'Semanas después del viaje',objetivo:'Sembrar la idea del próximo viaje sin presionar',msg:'¿Ya tienen en mente su próximo viaje? No hace falta que sea pronto, pero cuando lo estén pensando, aquí ando para ayudarte igual que la vez pasada, y ya conozco justo lo que te gusta.'},
+{id:'des8',cat:'despues',nombre:'Recomendar nuevos viajes',momento:'Cuando surge un destino o promoción que encaja con su perfil',objetivo:'Ofrecer una idea concreta basada en su historial, no una promoción genérica',msg:'Se me vino a la mente algo que creo que te puede gustar: como disfrutaste tanto {{destino}}, te compartiría una opción parecida que también tiene muy buenas reseñas. ¿Te la mando para que le eches un ojo, sin compromiso?'},
+{id:'rea1',cat:'react',nombre:'Cliente que cotizó pero nunca reservó',momento:'Semanas o meses después de una cotización que no avanzó',objetivo:'Reabrir contacto sin sonar a que se le está reclamando',msg:'Hola {{nombre_cliente}}, te escribo porque hace tiempo estuvimos platicando de un viaje a {{destino}} que finalmente no se concretó. ¿Sigue en tus planes? Si quieres, te actualizo precios y disponibilidad para retomarlo.'},
+{id:'rea2',cat:'react',nombre:'Cliente que viajó anteriormente',momento:'Meses después de un viaje ya realizado',objetivo:'Retomar contacto desde el vínculo ya construido',msg:'¡Hola {{nombre_cliente}}! Me acordé de ustedes justo estos días, ¿cómo han estado? Cualquier viaje que estén pensando para más adelante, me encantaría ayudarles otra vez como la vez pasada.'},
+{id:'rea3',cat:'react',nombre:'Cliente que dejó de responder',momento:'Reactivación de un lead frío después de mucho tiempo sin contacto',objetivo:'Reabrir la conversación reconociendo el silencio de forma natural',msg:'Sé que ha pasado tiempo desde que hablamos por última vez. No sé si el viaje ya se resolvió de otra forma, pero si sigue pendiente, aquí sigo disponible para ayudarte cuando gustes retomarlo.'},
+{id:'rea4',cat:'react',nombre:'Cliente que preguntó hace meses',momento:'Lead muy frío, contacto inicial hace mucho tiempo',objetivo:'Reconectar con contexto claro de cuándo fue el último contacto',msg:'Hola, hace algunos meses platicamos sobre un posible viaje. Quería retomar el contacto por si sigue siendo algo que tienes en mente, si es así, con gusto te comparto opciones actualizadas.'},
+{id:'rea5',cat:'react',nombre:'Cliente que podría viajar nuevamente',momento:'Cliente recurrente potencial, sin viaje activo en proceso',objetivo:'Sembrar la idea de un nuevo viaje sin presión',msg:'{{nombre_cliente}}, ¿cómo van las ganas de volver a viajar? Si están pensando en algo para este año, cuéntame qué tienen en mente y te armo opciones que se ajusten bien a lo que buscan.'},
+{id:'rea6',cat:'react',nombre:'Promoción relevante para cliente anterior',momento:'Surge una promoción que encaja con el perfil de un cliente pasado',objetivo:'Compartir una oportunidad concreta y relevante, no una promoción masiva',msg:'Vi una promoción de {{hotel}} que me hizo pensar en ustedes, justo por lo bien que la pasaron la última vez. Si les interesa que les comparta los detalles, con gusto se los mando.'},
+{id:'rea7',cat:'react',nombre:'Fechas similares a su viaje anterior',momento:'Se acerca la misma época del año del viaje anterior del cliente',objetivo:'Aprovechar el patrón estacional del cliente para generar recompra',msg:'Me di cuenta de que se acerca la fecha en la que viajaron la última vez a {{destino}}. Si están pensando en repetir la tradición este año, aviso con tiempo porque esas fechas suelen agotarse rápido.'},
+{id:'rea8',cat:'react',nombre:'Campañas de temporada',momento:'Inicio de temporada alta (verano, Semana Santa, Navidad)',objetivo:'Reconectar con base de clientes anteriores al inicio de una temporada fuerte',msg:'Ya se acerca temporada de reservas fuertes y quería avisarte antes que a nadie: si están pensando en viajar esta temporada, es buen momento para cotizar mientras hay más disponibilidad y mejores precios.'}
+]);
+MSG_TEMPLATES=MSG_TEMPLATES.concat([
+{id:'cam1',cat:'cambios',nombre:'Cambio de tarifa',momento:'El hotel actualiza el precio antes de que el cliente aparte',objetivo:'Comunicar un cambio de precio con transparencia total',msg:'Te aviso con toda honestidad: el hotel actualizó la tarifa que tenías cotizada. El nuevo precio para {{hotel}} es {{precio_total}}. Lamento el cambio, no depende de nosotros, pero quería que lo supieras cuanto antes.'},
+{id:'cam2',cat:'cambios',nombre:'Cambio de disponibilidad',momento:'La categoría cotizada ya no está disponible',objetivo:'Informar el cambio y ofrecer alternativa inmediata',msg:'Me acaban de avisar que la categoría de habitación que cotizamos en {{hotel}} ya no tiene disponibilidad para esas fechas. Ya estoy revisando alternativas similares para que no se afecte tu viaje, en un momento te comparto opciones.'},
+{id:'cam3',cat:'cambios',nombre:'Cambio de política del hotel',momento:'El hotel modifica alguna política relevante',objetivo:'Informar cambios operativos que afectan directamente al cliente',msg:'Te comparto un cambio importante: {{hotel}} actualizó una de sus políticas. Quería avisarte de inmediato para que lo tengas presente antes de tu viaje y no te tome por sorpresa al llegar.'},
+{id:'cam4',cat:'cambios',nombre:'Cambio de horario',momento:'Cambio en horarios de vuelo, traslado o actividad',objetivo:'Comunicar cambios de horario con anticipación suficiente',msg:'Hay un cambio de horario que debes saber. Te lo comparto en cuanto tenga el detalle confirmado, para que ajustes tu logística de traslado con tiempo suficiente y no tengas ningún contratiempo.'},
+{id:'cam5',cat:'cambios',nombre:'Cambio de habitación',momento:'El hotel reasigna tipo de habitación por overbooking u otro motivo',objetivo:'Informar y gestionar activamente a favor del cliente',msg:'Te aviso que el hotel tuvo que hacer un ajuste en la asignación de tu habitación. Ya estoy gestionando directamente con ellos para que el cambio sea a tu favor, o para que se resuelva de la mejor manera posible antes de tu llegada.'},
+{id:'cam6',cat:'cambios',nombre:'Modificación de reserva',momento:'El cliente solicita modificar algo de su reserva ya confirmada',objetivo:'Confirmar recepción de la solicitud de cambio y dar siguiente paso',msg:'Recibido tu cambio, {{nombre_cliente}}. Voy a gestionarlo directamente con el hotel y te confirmo en cuanto tenga respuesta si el ajuste tiene algún costo adicional o penalización, antes de aplicarlo.'},
+{id:'cam7',cat:'cambios',nombre:'Solicitud del hotel',momento:'El hotel pide información o acción adicional al cliente',objetivo:'Transmitir claramente lo que se necesita del cliente',msg:'El hotel me está solicitando información adicional para completar tu reserva. En cuanto me la compartas, la envío directamente y seguimos avanzando sin ningún retraso.'},
+{id:'cam8',cat:'cambios',nombre:'Situación que requiere informar al cliente',momento:'Cualquier imprevisto operativo relevante',objetivo:'Comunicar situaciones sensibles con calma y claridad',msg:'Quiero comentarte algo importante sobre tu viaje antes de que avance más el proceso. Prefiero que lo sepas de mi parte directamente y con toda la información, para que decidas con calma cómo seguir adelante.'},
+{id:'cam9',cat:'cambios',nombre:'Cancelación o modificación mayor',momento:'Un cambio significativo que afecta directamente el viaje planeado',objetivo:'Comunicar con empatía un cambio mayor, ofreciendo alternativas reales',msg:'Lamento darte esta noticia: hubo un cambio mayor que afecta directamente tu reserva en {{hotel}}. Ya estoy trabajando en alternativas equivalentes o mejores para que tu viaje no se vea afectado, y en cuanto tenga opciones concretas te las comparto.'},
+{id:'con1',cat:'confianza',nombre:'Profesionalismo de Rosale’s Adventures',momento:'Cuando un cliente nuevo duda entre trabajar contigo o hacerlo por su cuenta',objetivo:'Comunicar profesionalismo sin sonar a discurso de venta',msg:'Trabajo directamente con los hoteles y cada reserva la superviso personalmente, desde la cotización hasta que regresas de tu viaje. No eres un número más, eres alguien a quien acompaño en todo el proceso.'},
+{id:'con2',cat:'confianza',nombre:'Seguridad',momento:'El cliente expresa preocupación sobre la seguridad de su dinero/datos',objetivo:'Dar tranquilidad concreta sobre el manejo del proceso',msg:'Entiendo la importancia de sentirte seguro antes de dar cualquier anticipo. Trabajamos con hoteles reconocidos y documentamos cada pago con comprobante, así que en todo momento tienes evidencia clara de tu reserva y tus pagos.'},
+{id:'con3',cat:'confianza',nombre:'Acompañamiento',momento:'Recordar el valor del acompañamiento durante todo el proceso',objetivo:'Diferenciar el servicio del simple hecho de vender un paquete',msg:'Mi trabajo no termina cuando confirmas la reserva. Te acompaño antes, durante y después del viaje, así que si algo se ofrece en cualquier momento, tienes a alguien real respondiéndote, no un chatbot ni un call center.'},
+{id:'con4',cat:'confianza',nombre:'Experiencia',momento:'Reforzar la experiencia del asesor/agencia con destinos específicos',objetivo:'Comunicar experiencia concreta sin exagerar',msg:'He armado varios viajes a {{destino}} para familias con necesidades parecidas a la tuya, así que conozco bien qué hoteles funcionan mejor según el tipo de grupo que viaja. Te puedo ahorrar bastante prueba y error.'},
+{id:'con5',cat:'confianza',nombre:'Transparencia',momento:'Reforzar el compromiso de transparencia en precios y condiciones',objetivo:'Diferenciarse comunicando honestidad como valor central',msg:'Prefiero decirte las cosas como son, aunque a veces eso signifique que la respuesta no sea la que esperas, como cuando un precio sube o una fecha no tiene disponibilidad. Prefiero tu confianza a largo plazo que una venta rápida hoy.'},
+{id:'con6',cat:'confianza',nombre:'Especialización en Todo Incluido',momento:'Diferenciación frente a agencias generalistas',objetivo:'Comunicar especialización como ventaja concreta',msg:'Me enfoco específicamente en hoteles todo incluido de playa, así que conozco a detalle las diferencias reales entre categorías y cadenas, no es lo mismo que una agencia que vende de todo un poco.'},
+{id:'con7',cat:'confianza',nombre:'Atención personalizada',momento:'Reforzar cercanía frente a plataformas automatizadas',objetivo:'Comunicar cercanía real como diferenciador',msg:'Aquí no hay respuestas automáticas ni tickets de soporte: me escribes directo a mí y yo te respondo, conozco tu caso particular y ajusto cada recomendación pensando en tu familia, no en un catálogo genérico.'}
+]);
+
+var MSG_SEQUENCES=[
+ {emoji:'&#128229;',nombre:'Cliente nuevo (de contacto a cierre)',steps:[
+  {day:'Día 0',label:'Bienvenida',tplId:'nuevo2'},
+  {day:'Día 0',label:'Envío de cotización',tplId:'cot1'},
+  {day:'Día 1',label:'Primer seguimiento',tplId:'seg1'},
+  {day:'Día 3',label:'Seguimiento con valor agregado',tplId:'seg3'},
+  {day:'Día 5',label:'Seguimiento directo',tplId:'seg4'},
+  {day:'Día 7',label:'Último seguimiento',tplId:'seg9'},
+  {day:'+30 días',label:'Reactivación',tplId:'seg10'}
+ ]},
+ {emoji:'&#9992;&#65039;',nombre:'Cliente que ya apartó, rumbo al viaje',steps:[
+  {day:'Al apartar',label:'Confirmación de anticipo',tplId:'res6'},
+  {day:'Al confirmar',label:'Confirmación de reserva',tplId:'res7'},
+  {day:'-30 días',label:'30 días antes',tplId:'ant1'},
+  {day:'-15 días',label:'15 días antes',tplId:'ant2'},
+  {day:'-7 días',label:'7 días antes',tplId:'ant3'},
+  {day:'-3 días',label:'3 días antes',tplId:'ant4'},
+  {day:'-1 día',label:'1 día antes',tplId:'ant5'},
+  {day:'Día del viaje',label:'Buenos deseos / bienvenida',tplId:'ant12'}
+ ]},
+ {emoji:'&#127968;',nombre:'Después del viaje (reseña y recompra)',steps:[
+  {day:'Al regresar',label:'Bienvenida de regreso',tplId:'des1'},
+  {day:'+3 días',label:'Preguntar cómo estuvo',tplId:'des2'},
+  {day:'+5 días',label:'Solicitar reseña',tplId:'des4'},
+  {day:'+7 días',label:'Solicitar recomendación',tplId:'des5'},
+  {day:'+60 días',label:'Invitación a reservar de nuevo',tplId:'des7'}
+ ]},
+ {emoji:'&#129534;',nombre:'Cobranza de anticipo a liquidación',steps:[
+  {day:'Al apartar',label:'Solicitud de anticipo',tplId:'res4'},
+  {day:'-15 días liquidación',label:'Recordatorio de abono',tplId:'pag1'},
+  {day:'-7 días liquidación',label:'Recordatorio de fecha límite',tplId:'pag2'},
+  {day:'Si se atrasa',label:'Pago atrasado',tplId:'pag8'},
+  {day:'Al liquidar',label:'Confirmación de liquidación',tplId:'pag7'}
+ ]}
+];
+/* ---- motor de variables ---- */
+function normalizeTxt(s){return (s||'').toString().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function menoresVarStr(c){
+ var m=c.menores||[];
+ if(!m.length)return 'sin menores';
+ var ages=m.map(function(x){return x.edad;}).join(', ');
+ return 'con '+m.length+' menor'+(m.length>1?'es':'')+' ('+ages+' años)';
+}
+function ensureMsgExtra(c){
+ if(!c.msgExtra)c.msgExtra={};
+ var e=c.msgExtra;
+ if(e.habitaciones==null)e.habitaciones=String(Math.max(1,Math.ceil((c.adultos||1)/2)));
+ if(e.tipoHabitacion==null)e.tipoHabitacion='Estándar';
+ if(e.plan==null)e.plan='Todo Incluido';
+ if(e.numeroReserva==null)e.numeroReserva='';
+ if(e.fechaLimitePago==null)e.fechaLimitePago=c.fechaInicio?toISO(addDays(parseISO(c.fechaInicio),-30)):'';
+ if(e.linkCotizacion==null)e.linkCotizacion='';
+ if(e.linkPago==null)e.linkPago='';
+ if(e.horaCheckIn==null)e.horaCheckIn='15:00';
+ if(e.horaCheckOut==null)e.horaCheckOut='12:00';
+ return e;
+}
+function buildVarsForClient(c){
+ if(!c){
+  return {nombre_cliente:'',hotel:'',destino:'',fecha_llegada:'',fecha_salida:'',noches:'',adultos:'',menores:'',
+   habitaciones:'',tipo_habitacion:'',plan:'',precio_total:'',anticipo:'',saldo:'',fecha_limite_pago:'',
+   asesor:state.msgVars.asesor||'',telefono:'',numero_reserva:'',link_cotizacion:'',link_pago:'',hora_check_in:'',hora_check_out:''};
+ }
+ var e=ensureMsgExtra(c);
+ var noches=(c.fechaInicio&&c.fechaFin)?daysDiff(parseISO(c.fechaFin),parseISO(c.fechaInicio)):'';
+ var saldo=Math.max(0,(clienteValor(c)||0)-(c.anticipoPagado||0));
+ return {
+  nombre_cliente:(c.nombre||'').split(' ')[0],
+  hotel:c.hotel||'tu hotel',
+  destino:c.destino||'tu destino',
+  fecha_llegada:c.fechaInicio?fmtDateLong(c.fechaInicio):'por confirmar',
+  fecha_salida:c.fechaFin?fmtDateLong(c.fechaFin):'por confirmar',
+  noches:noches===''?'—':noches,
+  adultos:(c.adultos||1)+' adulto'+((c.adultos||1)===1?'':'s'),
+  menores:menoresVarStr(c),
+  habitaciones:e.habitaciones,
+  tipo_habitacion:e.tipoHabitacion,
+  plan:e.plan,
+  precio_total:fmtMoney(clienteValor(c)),
+  anticipo:fmtMoney(c.anticipoPagado||0),
+  saldo:fmtMoney(saldo),
+  fecha_limite_pago:e.fechaLimitePago?fmtDateLong(e.fechaLimitePago):'por definir',
+  asesor:state.msgVars.asesor||'tu asesor',
+  telefono:c.whatsapp?('+'+c.whatsapp):'',
+  numero_reserva:e.numeroReserva||'pendiente',
+  link_cotizacion:e.linkCotizacion||'',
+  link_pago:e.linkPago||'',
+  hora_check_in:e.horaCheckIn,
+  hora_check_out:e.horaCheckOut
+ };
+}
+function fillTemplate(msg,vars){
+ return msg.replace(/{{\s*([a-z_]+)\s*}}/g,function(_,key){
+  var v=vars[key];
+  return (v===undefined||v===null||v==='')?('['+key+']'):v;
+ });
+}
+function tplVarsUsed(msg){
+ var set={},m,re=/{{\s*([a-z_]+)\s*}}/g;
+ while((m=re.exec(msg))){set[m[1]]=true;}
+ return Object.keys(set);
+}
+function getTemplateById(id){
+ var t=null;
+ for(var i=0;i<MSG_TEMPLATES.length;i++){if(MSG_TEMPLATES[i].id===id){t=MSG_TEMPLATES[i];break;}}
+ if(!t)return null;
+ var msg=(state.msgOverrides&&state.msgOverrides[id])?state.msgOverrides[id]:t.msg;
+ return {id:t.id,cat:t.cat,nombre:t.nombre,momento:t.momento,objetivo:t.objetivo,msg:msg,edited:!!(state.msgOverrides&&state.msgOverrides[id])};
+}
+
+/* ---- sugerencias inteligentes ---- */
+function suggestTemplatesForClient(c){
+ var out=[];
+ var u=urgencia(c);
+ var diasContacto=c.ultimoContacto?daysDiff(todayDate(),parseISO(c.ultimoContacto)):999;
+ if(c.etapa==='Nuevo lead'&&(!c.notas||!c.notas.length)){
+  out.push({tplId:'nuevo1',reason:'Lead nuevo sin primer contacto registrado'});
+ }
+ if(c.etapa==='Cotización enviada'&&(u==='vencido'||diasContacto>=2)){
+  out.push({tplId:'seg2',reason:'Cotización enviada sin seguimiento reciente'});
+ }
+ if((c.etapa==='Apartado'||c.etapa==='Reserva confirmada')&&(clienteValor(c)-(c.anticipoPagado||0))>0){
+  out.push({tplId:'pag1',reason:'Tiene saldo pendiente por cobrar'});
+ }
+ if(c.fechaInicio){
+  var dias=daysDiff(parseISO(c.fechaInicio),todayDate());
+  if(dias>=25&&dias<=35)out.push({tplId:'ant1',reason:'Faltan cerca de 30 días para su viaje'});
+  else if(dias>=11&&dias<=18)out.push({tplId:'ant2',reason:'Faltan cerca de 15 días para su viaje'});
+  else if(dias>=5&&dias<=9)out.push({tplId:'ant3',reason:'Faltan 7 días para su viaje'});
+  else if(dias>=2&&dias<=4)out.push({tplId:'ant4',reason:'Faltan pocos días para su viaje'});
+  else if(dias===1)out.push({tplId:'ant5',reason:'Su viaje es mañana'});
+  else if(dias===0)out.push({tplId:'dur1',reason:'Hoy viaja'});
+ }
+ if(c.etapa==='Viaje realizado'&&c.fechaFin){
+  var diasReg=daysDiff(todayDate(),parseISO(c.fechaFin));
+  if(diasReg>=1&&diasReg<=10)out.push({tplId:'des2',reason:'Regresó de viaje hace poco'});
+  else if(diasReg>60)out.push({tplId:'des7',reason:'Ya pasó tiempo desde su último viaje'});
+ }
+ if(c.perdido)out.push({tplId:'rea3',reason:'Cliente marcado como perdido / sin respuesta'});
+ return out.slice(0,4);
+}
+
+/* ---- navegación y estado del módulo ---- */
+function goToMensajesFor(id){state.msgClienteId=id;saveState();setView('mensajes');}
+function selectMsgClient(id){state.msgClienteId=id||null;saveState();renderApp();}
+function setMsgTab(t){state.filtroMsg.tab=t;renderApp();}
+function filterMsgCat(c){state.filtroMsg.cat=c;renderApp();}
+function onMsgSearch(v){state.filtroMsg.q=v;state.filtroMsg.cat='todas';renderApp();var el=document.getElementById('msgSearch');if(el){el.focus();el.setSelectionRange(v.length,v.length);}}
+function setAsesorName(v){state.msgVars.asesor=v||'Alejandro';saveState();}
+
+/* ---- favoritos ---- */
+function toggleFavorite(id){
+ var idx=state.msgFavoritos.indexOf(id);
+ if(idx===-1)state.msgFavoritos.push(id);else state.msgFavoritos.splice(idx,1);
+ saveState();
+}
+function toggleFavoriteInline(btn,id){
+ toggleFavorite(id);
+ var on=state.msgFavoritos.indexOf(id)!==-1;
+ btn.classList.toggle('on',on);
+ btn.innerHTML=on?'&#9733;':'&#9734;';
+}
+
+/* ---- historial ---- */
+function logHistorial(id,accion){
+ var t=getTemplateById(id);
+ var client=state.msgClienteId?findClient(state.msgClienteId):null;
+ state.msgHistorial.unshift({
+  fecha:new Date().toISOString(),
+  clienteId:client?client.id:null,
+  clienteNombre:client?client.nombre:'Sin cliente',
+  categoria:t?t.cat:'',
+  tplId:id,
+  tplNombre:t?t.nombre:id,
+  accion:accion
+ });
+ if(state.msgHistorial.length>300)state.msgHistorial.length=300;
+ saveState();
+}
+/* ---- copiar / whatsapp ---- */
+function fallbackCopy(text,cb){
+ try{
+  var ta2=document.createElement('textarea');
+  ta2.value=text;ta2.style.position='fixed';ta2.style.left='-9999px';
+  document.body.appendChild(ta2);ta2.focus();ta2.select();
+  var ok=document.execCommand('copy');
+  document.body.removeChild(ta2);
+  cb(ok);
+ }catch(e){cb(false);}
+}
+function copyMensaje(id){
+ var ta=document.getElementById('msgFinalText');
+ if(!ta)return;
+ var text=ta.value;
+ function done(ok){
+  toast(ok?'Mensaje copiado ✓':'No se pudo copiar, selecciona el texto manualmente','&#128203;');
+  logHistorial(id,'copiado');
+ }
+ if(navigator.clipboard&&navigator.clipboard.writeText){
+  navigator.clipboard.writeText(text).then(function(){done(true);}).catch(function(){fallbackCopy(text,done);});
+ }else{
+  fallbackCopy(text,done);
+ }
+}
+function abrirWhatsappMensaje(id){
+ var ta=document.getElementById('msgFinalText');
+ if(!ta)return;
+ var text=ta.value;
+ var client=state.msgClienteId?findClient(state.msgClienteId):null;
+ if(!client||!client.whatsapp){
+  toast('Selecciona un cliente con WhatsApp para abrir el chat directo','&#9888;');
+  return;
+ }
+ window.open(waLink(client.whatsapp,text),'_blank');
+ logHistorial(id,'whatsapp');
+}
+
+/* ---- edición de datos extra del cliente ---- */
+function applyMsgExtra(id){
+ var c=findClient(state.msgClienteId);if(!c)return;
+ var e=ensureMsgExtra(c);
+ e.habitaciones=document.getElementById('e_habitaciones').value;
+ e.tipoHabitacion=document.getElementById('e_tipoHabitacion').value;
+ e.plan=document.getElementById('e_plan').value;
+ e.numeroReserva=document.getElementById('e_numeroReserva').value;
+ e.fechaLimitePago=document.getElementById('e_fechaLimitePago').value;
+ e.horaCheckIn=document.getElementById('e_horaCheckIn').value;
+ e.horaCheckOut=document.getElementById('e_horaCheckOut').value;
+ e.linkCotizacion=document.getElementById('e_linkCotizacion').value;
+ e.linkPago=document.getElementById('e_linkPago').value;
+ saveState();
+ openTemplateDetail(id);
+ toast('Mensaje actualizado con los nuevos datos');
+}
+
+/* ---- edición de la plantilla base ---- */
+function toggleEditTemplate(id){
+ var zone=document.getElementById('editTplZone');
+ if(!zone)return;
+ if(zone.innerHTML){zone.innerHTML='';return;}
+ var t=getTemplateById(id);
+ zone.innerHTML=''+
+  '<div class="form-group" style="margin-top:10px;"><label class="form-label">Texto base de la plantilla (usa {{variables}})</label>'+
+  '<textarea class="msg-textarea" id="tplEditText" style="min-height:120px;">'+esc(t.msg)+'</textarea></div>'+
+  '<div style="display:flex;gap:8px;">'+
+  '<button class="btn btn-gold btn-sm" style="flex:1;" onclick="saveTemplateEdit(\''+id+'\')">Guardar plantilla</button>'+
+  (t.edited?'<button class="btn btn-ghost btn-sm" onclick="resetTemplateEdit(\''+id+'\')">Restablecer original</button>':'')+
+  '</div>';
+}
+function saveTemplateEdit(id){
+ var txt=document.getElementById('tplEditText').value;
+ state.msgOverrides[id]=txt;
+ saveState();
+ toast('Plantilla actualizada');
+ openTemplateDetail(id);
+}
+function resetTemplateEdit(id){
+ delete state.msgOverrides[id];
+ saveState();
+ toast('Plantilla restablecida al original');
+ openTemplateDetail(id);
+}
+
+/* ---- vista de detalle de plantilla (modal) ---- */
+function openTemplateDetail(id){
+ var t=getTemplateById(id);if(!t)return;
+ var client=state.msgClienteId?findClient(state.msgClienteId):null;
+ var vars=buildVarsForClient(client);
+ var finalMsg=fillTemplate(t.msg,vars);
+ var usedVars=tplVarsUsed(t.msg);
+ var fav=state.msgFavoritos.indexOf(id)!==-1;
+
+ var extraFormHTML='';
+ if(client){
+  var e=ensureMsgExtra(client);
+  extraFormHTML=''+
+  '<div class="section-title" style="margin:16px 0 8px;">&#9881;&#65039; Datos de esta cotización</div>'+
+  '<div class="var-grid">'+
+   '<div class="form-group"><label class="form-label">Habitaciones</label><input class="form-control" id="e_habitaciones" value="'+esc(e.habitaciones)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Tipo de habitación</label><input class="form-control" id="e_tipoHabitacion" value="'+esc(e.tipoHabitacion)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Plan</label><input class="form-control" id="e_plan" value="'+esc(e.plan)+'"></div>'+
+   '<div class="form-group"><label class="form-label">N&#186; de reserva</label><input class="form-control" id="e_numeroReserva" value="'+esc(e.numeroReserva)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Fecha límite de pago</label><input type="date" class="form-control" id="e_fechaLimitePago" value="'+(e.fechaLimitePago||'')+'"></div>'+
+   '<div class="form-group"><label class="form-label">Hora check-in</label><input class="form-control" id="e_horaCheckIn" value="'+esc(e.horaCheckIn)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Hora check-out</label><input class="form-control" id="e_horaCheckOut" value="'+esc(e.horaCheckOut)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Link de cotización</label><input class="form-control" id="e_linkCotizacion" value="'+esc(e.linkCotizacion)+'"></div>'+
+   '<div class="form-group" style="grid-column:1/-1;"><label class="form-label">Link de pago</label><input class="form-control" id="e_linkPago" value="'+esc(e.linkPago)+'"></div>'+
+  '</div>'+
+  '<button class="btn btn-ghost btn-sm btn-block" style="margin-top:6px;" onclick="applyMsgExtra(\''+id+'\')">&#8635; Actualizar mensaje con estos datos</button>';
+ }
+
+ openModal(
+  '<div class="modal-head"><h2>'+catInfo(t.cat).emoji+' '+esc(t.nombre)+'</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+  '<div class="modal-body" id="tplDetailBody" data-tplid="'+id+'">'+
+   '<div class="tpl-detail-meta"><b>Categoría:</b> '+catInfo(t.cat).label+'<br><b>Momento recomendado:</b> '+esc(t.momento)+'<br><b>Objetivo:</b> '+esc(t.objetivo)+
+    (usedVars.length?'<br><b>Variables:</b> '+usedVars.map(function(v){return '{{'+v+'}}';}).join(', '):'')+
+   '</div>'+
+   (client?'':'<div class="form-hint" style="margin:8px 0;">Sin cliente seleccionado — elige uno desde el Centro de Mensajes para autocompletar. Por ahora puedes editar el mensaje manualmente abajo.</div>')+
+   '<div class="msg-preview-label"><label class="form-label" style="margin:0;">Mensaje final (puedes editarlo antes de enviar)</label>'+
+    '<button class="tpl-fav'+(fav?' on':'')+'" onclick="toggleFavoriteInline(this,\''+id+'\')">'+(fav?'&#9733;':'&#9734;')+'</button>'+
+   '</div>'+
+   '<textarea class="msg-textarea" id="msgFinalText">'+esc(finalMsg)+'</textarea>'+
+   '<div class="msg-actions">'+
+    '<button class="btn btn-navy" onclick="copyMensaje(\''+id+'\')">&#128203; Copiar mensaje</button>'+
+    '<button class="btn btn-gold" onclick="abrirWhatsappMensaje(\''+id+'\')">&#128242; Abrir WhatsApp</button>'+
+   '</div>'+
+   extraFormHTML+
+   '<div style="border-top:1px solid var(--line);margin:18px 0 12px;"></div>'+
+   '<button class="btn btn-ghost btn-sm btn-block" onclick="toggleEditTemplate(\''+id+'\')">&#9999;&#65039; Editar plantilla base'+(t.edited?' (editada)':'')+'</button>'+
+   '<div id="editTplZone"></div>'+
+  '</div>'
+ );
+}
+
+/* ---- pestañas: plantillas / secuencias / historial ---- */
+function renderPlantillasTab(client){
+ var f=state.filtroMsg;
+ var q=normalizeTxt(f.q);
+ var searchHTML='<div class="searchbar">&#128269;<input id="msgSearch" placeholder="Buscar: cotización, pago, objeción..." value="'+esc(f.q)+'" oninput="onMsgSearch(this.value)"></div>';
+ var favBtn='<button class="tabpill'+(f.cat==='favoritos'?' active':'')+'" onclick="filterMsgCat(\'favoritos\')" style="margin-bottom:12px;">&#11088; Mis favoritos ('+state.msgFavoritos.length+')</button>';
+
+ if(!q && f.cat==='todas'){
+  var grid='<div class="cat-grid">'+MSG_CATEGORIES.map(function(cat){
+   var n=MSG_TEMPLATES.filter(function(t){return t.cat===cat.key;}).length;
+   return '<button class="cat-tile" onclick="filterMsgCat(\''+cat.key+'\')"><div class="cat-emoji">'+cat.emoji+'</div><div class="cat-name">'+cat.label+'</div><div class="cat-count">'+n+' plantillas</div></button>';
+  }).join('')+'</div>';
+  return searchHTML+favBtn+grid;
+ }
+
+ var list=MSG_TEMPLATES.filter(function(t){
+  var okCat = (f.cat==='todas')?true:(f.cat==='favoritos'?(state.msgFavoritos.indexOf(t.id)!==-1):(t.cat===f.cat));
+  var okQ = !q || normalizeTxt(t.nombre+' '+t.objetivo+' '+catInfo(t.cat).label).indexOf(q)!==-1;
+  return okCat&&okQ;
+ });
+ var backChip = (f.cat!=='todas')? '<button class="chip active" onclick="filterMsgCat(\'todas\')">&#8592; '+(f.cat==='favoritos'?'Favoritos':catInfo(f.cat).label)+'</button>' : '';
+
+ var listHTML = list.length? list.map(function(t){
+  var fav=state.msgFavoritos.indexOf(t.id)!==-1;
+  return '<div class="tpl-row">'+
+   '<div class="tpl-main" onclick="openTemplateDetail(\''+t.id+'\')">'+
+    '<div class="tpl-name">'+catInfo(t.cat).emoji+' '+esc(t.nombre)+'</div>'+
+    '<div class="tpl-meta">'+esc(t.objetivo)+'</div>'+
+   '</div>'+
+   '<button class="tpl-fav'+(fav?' on':'')+'" onclick="event.stopPropagation();toggleFavoriteInline(this,\''+t.id+'\')">'+(fav?'&#9733;':'&#9734;')+'</button>'+
+  '</div>';
+ }).join('') : '<div class="empty-state"><div class="emo">&#128269;</div>No hay plantillas con ese filtro.</div>';
+
+ return searchHTML+(f.cat==='todas'?favBtn:'')+backChip+listHTML;
+}
+function renderSecuencias(){
+ return '<div class="form-hint" style="margin-bottom:14px;">Secuencias de referencia: sigue el orden sugerido según el momento del cliente. Toca cualquier paso para abrir esa plantilla.</div>'+
+ MSG_SEQUENCES.map(function(seq){
+  return '<div class="seq-block"><div class="seq-name">'+seq.emoji+' '+esc(seq.nombre)+'</div>'+
+   seq.steps.map(function(st){
+    var t=getTemplateById(st.tplId);
+    return '<div class="seq-step"><div class="seq-day">'+esc(st.day)+'</div>'+
+     '<div class="seq-content" onclick="openTemplateDetail(\''+st.tplId+'\')"><b>'+(t?esc(t.nombre):esc(st.label))+'</b><span>'+esc(st.label)+'</span></div></div>';
+   }).join('')+
+  '</div>';
+ }).join('');
+}
+function renderHistorialMsg(){
+ var h=state.msgHistorial.slice(0,60);
+ if(!h.length)return '<div class="empty-state"><div class="emo">&#128172;</div>Todavía no has usado ninguna plantilla.<br>Cuando copies un mensaje o abras WhatsApp desde una plantilla, aparecerá aquí.</div>';
+ return '<div class="card">'+h.map(function(r){
+  var d=new Date(r.fecha);
+  var fecha=d.toLocaleDateString('es-MX',{day:'numeric',month:'short'})+' '+d.toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'});
+  var accIco=r.accion==='whatsapp'?'&#128242;':'&#128203;';
+  return '<div class="hist-row"><div><div class="hist-main">'+accIco+' '+esc(r.tplNombre)+'</div>'+
+   '<div class="hist-sub">'+esc(r.clienteNombre)+' &middot; '+catInfo(r.categoria).label+'</div></div>'+
+   '<div class="hist-sub">'+fecha+'</div></div>';
+ }).join('')+'</div>';
+}
+
+/* ---- vista principal del módulo ---- */
+function renderMensajes(){
+ var f=state.filtroMsg;
+ var client=state.msgClienteId?findClient(state.msgClienteId):null;
+ var clientOptions='<option value="">— Sin cliente (mensaje genérico) —</option>'+
+  state.clientes.slice().sort(function(a,b){return a.nombre.localeCompare(b.nombre);}).map(function(c){
+   return '<option value="'+c.id+'"'+(client&&client.id===c.id?' selected':'')+'>'+esc(c.nombre)+' &middot; '+esc(c.destino||'sin destino')+'</option>';
+  }).join('');
+ var head=''+
+  '<div class="view-head"><h1>&#128172; Centro de Mensajes</h1><p>Tu biblioteca de mensajes para WhatsApp, lista para personalizar y enviar.</p></div>'+
+  '<div class="client-select-wrap">'+
+   '<label class="form-label">Cliente para personalizar el mensaje</label>'+
+   '<select onchange="selectMsgClient(this.value)">'+clientOptions+'</select>'+
+   (client?'':'<div class="client-select-empty">Sin cliente seleccionado: las plantillas se muestran con [variables] para que las llenes a mano.</div>')+
+   '<div class="form-group" style="margin:10px 0 0;"><label class="form-label">Tu nombre como asesor (usado en {{asesor}})</label>'+
+   '<input class="form-control" value="'+esc(state.msgVars.asesor||'')+'" onchange="setAsesorName(this.value)"></div>'+
+  '</div>';
+
+ var suggestHTML='';
+ if(client){
+  var sug=suggestTemplatesForClient(client);
+  if(sug.length){
+   suggestHTML='<div class="suggest-card"><div class="suggest-title">&#10024; Sugerido para '+esc(client.nombre.split(' ')[0])+'</div>'+
+    sug.map(function(s){
+     var t=getTemplateById(s.tplId);if(!t)return '';
+     return '<div class="suggest-row" onclick="openTemplateDetail(\''+s.tplId+'\')"><span class="suggest-txt">'+esc(t.nombre)+'<span class="suggest-reason">'+esc(s.reason)+'</span></span><span>&#8250;</span></div>';
+    }).join('')+
+   '</div>';
+  }
+ }
+
+ var tabs=[['plantillas','Plantillas'],['secuencias','Secuencias'],['historial','Historial']];
+ var tabHTML='<div class="tabpill-row">'+tabs.map(function(t){return '<button class="tabpill'+(f.tab===t[0]?' active':'')+'" onclick="setMsgTab(\''+t[0]+'\')">'+t[1]+'</button>';}).join('')+'</div>';
+
+ var body='';
+ if(f.tab==='secuencias')body=renderSecuencias();
+ else if(f.tab==='historial')body=renderHistorialMsg();
+ else body=renderPlantillasTab(client);
+
+ return head+suggestHTML+tabHTML+body;
+}
+
 
 renderApp();
 
