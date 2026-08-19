@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<title>Rosale's Adventures | Sales OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<meta name="theme-color" content="#0B1F3A">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rosale's CRM">
+<style>
+:root{
+  --navy-950:#081527;
+  --navy-900:#0B1F3A;
+  --navy-800:#132A4D;
+  --navy-700:#1E3A5F;
+  --navy-600:#2C4D78;
+  --gold-400:#E8CB7A;
+  --gold-500:#D4B45C;
+  --gold-600:#C9A94E;
+  --gold-700:#A9862F;
+  --white:#FFFFFF;
+  --bg:#F4F5F8;
+  --bg-card:#FFFFFF;
+  --text-dark:#12203A;
+  --text-muted:#6B7688;
+  --text-soft:#98A2B3;
+  --line:#E7E9F0;
+  --red:#DC2626; --red-bg:#FDEAEA; --red-txt:#B91C1C;
+  --orange:#EA580C; --orange-bg:#FDEEE3; --orange-txt:#C2410C;
+  --yellow:#CA8A04; --yellow-bg:#FCF3D6; --yellow-txt:#946608;
+  --green:#16A34A; --green-bg:#E4F7EA; --green-txt:#0E7C37;
+  --blue:#2563EB; --blue-bg:#E9EFFD; --blue-txt:#1D4ED8;
+  --radius-lg:18px;
+  --radius-md:12px;
+  --radius-sm:8px;
+  --shadow-card:0 1px 2px rgba(11,31,58,.04), 0 6px 20px rgba(11,31,58,.06);
+  --shadow-pop:0 10px 40px rgba(8,21,39,.25);
+}
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;}
+body{
+  font-family:'Poppins',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text-dark);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+.brandfont{font-family:'Playfair Display',serif;}
+button,input,select,textarea{font-family:inherit;font-size:15px;color:inherit;}
+button{cursor:pointer;}
+::-webkit-scrollbar{width:6px;height:6px;}
+::-webkit-scrollbar-thumb{background:#D3D8E4;border-radius:10px;}
+
+.app-shell{min-height:100vh;padding-bottom:78px;}
+
+.topbar{
+  position:sticky;top:0;z-index:40;
+  background:linear-gradient(135deg,var(--navy-900),var(--navy-800));
+  color:#fff;padding:14px 14px 14px 10px;
+  display:flex;align-items:center;gap:10px;
+  box-shadow:0 4px 16px rgba(8,21,39,.18);
+  border-bottom:2px solid var(--gold-600);
+}
+.icon-btn{
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  width:38px;height:38px;border-radius:11px;color:#fff;
+  display:flex;align-items:center;justify-content:center;font-size:18px;
+  flex-shrink:0;position:relative;
+}
+.icon-btn:active{transform:scale(.94);}
+.topbar-titles{flex:1;min-width:0;}
+.topbar-title{font-weight:700;font-size:16px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.topbar-sub{font-size:11px;color:var(--gold-400);font-weight:600;letter-spacing:.5px;}
+.badge-dot{
+  position:absolute;top:-4px;right:-4px;min-width:16px;height:16px;padding:0 3px;
+  background:var(--red);border-radius:20px;font-size:10px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;border:2px solid var(--navy-900);
+}
+
+.drawer-overlay{
+  position:fixed;inset:0;background:rgba(8,15,28,.55);z-index:60;
+  opacity:0;pointer-events:none;transition:opacity .2s ease;
+}
+.drawer-overlay.open{opacity:1;pointer-events:auto;}
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:280px;z-index:61;
+  background:linear-gradient(180deg,var(--navy-900),var(--navy-950));
+  transform:translateX(-100%);transition:transform .25s ease;
+  display:flex;flex-direction:column;color:#fff;
+}
+.sidebar.open{transform:translateX(0);}
+.brand-row{display:flex;align-items:center;gap:12px;padding:20px 16px;border-bottom:1px solid rgba(255,255,255,.08);}
+.brand-logo{
+  width:42px;height:42px;border-radius:12px;flex-shrink:0;
+  background:linear-gradient(135deg,var(--gold-500),var(--gold-700));
+  display:flex;align-items:center;justify-content:center;
+  font-weight:700;color:var(--navy-950);font-size:15px;
+}
+.brand-text{flex:1;min-width:0;}
+.brand-name{display:block;font-weight:700;font-size:15px;line-height:1.25;}
+.brand-sub{display:block;font-size:10.5px;letter-spacing:1.5px;color:var(--gold-400);font-weight:600;}
+.drawer-close{background:transparent;border:none;color:#fff;font-size:18px;opacity:.7;width:30px;height:30px;}
+.nav-list{flex:1;overflow-y:auto;padding:14px 10px;}
+.nav-item{
+  display:flex;align-items:center;gap:12px;padding:12px 12px;border-radius:12px;
+  color:rgba(255,255,255,.78);font-weight:500;font-size:14.5px;margin-bottom:2px;
+  border:1px solid transparent;background:transparent;width:100%;text-align:left;
+}
+.nav-item .ico{width:22px;text-align:center;font-size:16px;}
+.nav-item.active{background:rgba(212,180,92,.14);color:#fff;border-color:rgba(212,180,92,.35);}
+.nav-item.active .ico{filter:none;}
+.sidebar-footer{padding:14px;border-top:1px solid rgba(255,255,255,.08);}
+.btn-settings{
+  width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);
+  color:#fff;padding:11px;border-radius:11px;font-weight:500;font-size:14px;text-align:left;
+}
+
+.main{padding:16px 14px 24px;max-width:1180px;margin:0 auto;}
+.view-head{margin-bottom:16px;}
+.view-head h1{font-size:20px;font-weight:700;margin:0 0 2px;color:var(--navy-900);}
+.view-head p{font-size:13px;color:var(--text-muted);margin:0;}
+
+.bottom-nav{
+  position:fixed;left:0;right:0;bottom:0;z-index:39;height:70px;
+  background:linear-gradient(135deg,var(--navy-900),var(--navy-800));
+  display:flex;align-items:stretch;border-top:2px solid var(--gold-600);
+  box-shadow:0 -6px 20px rgba(8,21,39,.2);
+  padding-bottom:env(safe-area-inset-bottom);
+}
+.bn-item{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  background:transparent;border:none;color:rgba(255,255,255,.62);font-size:10.5px;font-weight:600;
+}
+.bn-item .ico{font-size:19px;}
+.bn-item.active{color:var(--gold-400);}
+.bn-item.active .ico{transform:translateY(-1px);}
+
+.card{background:var(--bg-card);border-radius:var(--radius-lg);box-shadow:var(--shadow-card);padding:16px;border:1px solid var(--line);}
+.section-title{font-size:14px;font-weight:700;color:var(--navy-900);margin:22px 0 10px;display:flex;align-items:center;gap:6px;}
+.section-title:first-child{margin-top:0;}
+
+.kpi-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.kpi-card{
+  background:var(--bg-card);border-radius:var(--radius-md);border:1px solid var(--line);
+  padding:13px 14px;box-shadow:var(--shadow-card);
+}
+.kpi-label{font-size:11.5px;color:var(--text-muted);font-weight:600;margin-bottom:4px;text-transform:uppercase;letter-spacing:.4px;}
+.kpi-value{font-size:19px;font-weight:700;color:var(--navy-900);line-height:1.15;}
+.kpi-sub{font-size:11px;color:var(--text-soft);margin-top:3px;}
+
+.goal-card{
+  background:linear-gradient(135deg,var(--navy-900),var(--navy-700));
+  border-radius:var(--radius-lg);padding:18px;color:#fff;box-shadow:var(--shadow-card);position:relative;overflow:hidden;
+}
+.goal-card::after{content:"";position:absolute;right:-40px;top:-40px;width:140px;height:140px;border-radius:50%;background:radial-gradient(circle,rgba(212,180,92,.25),transparent 70%);}
+.goal-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;}
+.goal-label{font-size:12px;letter-spacing:.5px;color:var(--gold-400);font-weight:700;text-transform:uppercase;}
+.goal-pct{font-size:22px;font-weight:800;color:var(--gold-400);}
+.goal-nums{display:flex;justify-content:space-between;font-size:13px;margin-bottom:10px;color:rgba(255,255,255,.85);}
+.goal-nums b{color:#fff;font-size:17px;}
+.progress-track{height:10px;background:rgba(255,255,255,.14);border-radius:20px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--gold-600),var(--gold-400));border-radius:20px;transition:width .4s ease;}
+
+.hot-card{
+  border-radius:var(--radius-lg);border:1px solid #F3D9A8;background:linear-gradient(180deg,#FFF9EE,#FFFFFF);
+  padding:14px;box-shadow:var(--shadow-card);
+}
+.hot-title{font-size:15px;font-weight:800;color:var(--navy-900);margin-bottom:2px;}
+.hot-sub{font-size:12px;color:var(--text-muted);margin-bottom:10px;}
+.hot-row{
+  display:flex;align-items:center;gap:10px;padding:10px 8px;border-radius:12px;background:#fff;
+  border:1px solid var(--line);margin-bottom:8px;
+}
+.hot-row:last-child{margin-bottom:0;}
+.avatar{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;
+  font-weight:700;font-size:13px;color:#fff;background:var(--navy-700);
+}
+.hot-info{flex:1;min-width:0;}
+.hot-name{font-size:13.5px;font-weight:700;color:var(--navy-900);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hot-meta{font-size:11.5px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.hot-actions{display:flex;gap:6px;flex-shrink:0;}
+.icon-round{width:32px;height:32px;border-radius:50%;border:none;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.icon-round.wa{background:#DCFCE7;color:#16A34A;}
+.icon-round.view{background:var(--navy-900);color:#fff;}
+
+.badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;white-space:nowrap;}
+.b-red{background:var(--red-bg);color:var(--red-txt);}
+.b-orange{background:var(--orange-bg);color:var(--orange-txt);}
+.b-yellow{background:var(--yellow-bg);color:var(--yellow-txt);}
+.b-green{background:var(--green-bg);color:var(--green-txt);}
+.b-blue{background:var(--blue-bg);color:var(--blue-txt);}
+.b-navy{background:var(--navy-900);color:#fff;}
+.b-gold{background:#FBF1DA;color:var(--gold-700);}
+.b-gray{background:#EEF0F4;color:var(--text-muted);}
+
+.btn{border-radius:12px;padding:11px 16px;font-weight:600;font-size:14px;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:6px;}
+.btn-gold{background:linear-gradient(135deg,var(--gold-500),var(--gold-700));color:var(--navy-950);font-weight:700;}
+.btn-navy{background:var(--navy-900);color:#fff;}
+.btn-ghost{background:#fff;border-color:var(--line);color:var(--navy-900);}
+.btn-danger{background:var(--red-bg);color:var(--red-txt);}
+.btn-block{width:100%;}
+.btn-sm{padding:8px 12px;font-size:12.5px;border-radius:10px;}
+.btn:active{transform:scale(.97);}
+
+.searchbar{display:flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:12px;padding:9px 12px;margin-bottom:12px;}
+.searchbar input{border:none;outline:none;flex:1;background:transparent;font-size:14px;}
+.chiprow{display:flex;gap:7px;overflow-x:auto;padding-bottom:4px;margin-bottom:12px;}
+.chiprow::-webkit-scrollbar{display:none;}
+.chip{flex-shrink:0;padding:7px 13px;border-radius:20px;background:#fff;border:1px solid var(--line);font-size:12.5px;font-weight:600;color:var(--text-muted);white-space:nowrap;}
+.chip.active{background:var(--navy-900);color:#fff;border-color:var(--navy-900);}
+
+.client-row{
+  display:flex;align-items:center;gap:11px;background:#fff;border:1px solid var(--line);border-radius:14px;
+  padding:12px;margin-bottom:9px;box-shadow:var(--shadow-card);
+}
+.client-info{flex:1;min-width:0;}
+.client-name{font-size:14px;font-weight:700;color:var(--navy-900);}
+.client-meta{font-size:12px;color:var(--text-muted);margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.client-right{text-align:right;flex-shrink:0;}
+.client-value{font-size:13px;font-weight:700;color:var(--navy-900);}
+.client-dot-row{display:flex;align-items:center;gap:5px;margin-top:5px;justify-content:flex-end;}
+.dot{width:8px;height:8px;border-radius:50%;}
+.dot-red{background:var(--red);}.dot-orange{background:var(--orange);}.dot-yellow{background:var(--yellow);}.dot-green{background:var(--green);}.dot-gray{background:#C7CCD6;}
+
+.fab{
+  position:fixed;right:18px;bottom:90px;z-index:38;width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--gold-500),var(--gold-700));color:var(--navy-950);
+  border:none;font-size:24px;box-shadow:0 10px 24px rgba(201,169,78,.45);display:flex;align-items:center;justify-content:center;
+}
+
+.kanban-wrap{overflow-x:auto;padding-bottom:10px;margin:0 -14px;padding-left:14px;padding-right:14px;}
+.kanban-track{display:flex;gap:12px;}
+.kanban-col{flex-shrink:0;width:250px;background:#EEF1F6;border-radius:16px;padding:10px;}
+.kanban-head{padding:6px 6px 10px;}
+.kanban-head-name{font-size:12.5px;font-weight:800;color:var(--navy-900);}
+.kanban-head-meta{font-size:11px;color:var(--text-muted);margin-top:2px;}
+.kanban-card{background:#fff;border-radius:12px;padding:10px;margin-bottom:8px;border:1px solid var(--line);box-shadow:var(--shadow-card);}
+.kanban-card-name{font-size:12.5px;font-weight:700;color:var(--navy-900);margin-bottom:2px;}
+.kanban-card-dest{font-size:11px;color:var(--text-muted);margin-bottom:6px;}
+.kanban-card-foot{display:flex;justify-content:space-between;align-items:center;}
+.kanban-card-val{font-size:11.5px;font-weight:700;color:var(--gold-700);}
+.kanban-move{display:flex;gap:4px;}
+.kmv-btn{width:24px;height:24px;border-radius:7px;border:1px solid var(--line);background:#fff;font-size:12px;display:flex;align-items:center;justify-content:center;color:var(--navy-900);}
+
+.seg-group{margin-bottom:18px;}
+.seg-head{display:flex;align-items:center;gap:7px;font-size:13px;font-weight:800;margin-bottom:9px;padding:8px 12px;border-radius:12px;}
+.seg-head.red{background:var(--red-bg);color:var(--red-txt);}
+.seg-head.orange{background:var(--orange-bg);color:var(--orange-txt);}
+.seg-head.yellow{background:var(--yellow-bg);color:var(--yellow-txt);}
+.seg-head.green{background:var(--green-bg);color:var(--green-txt);}
+.seg-count{margin-left:auto;background:rgba(0,0,0,.08);border-radius:20px;padding:1px 9px;font-size:11.5px;}
+
+.progress-mini{height:7px;background:#EDEFF4;border-radius:20px;overflow:hidden;margin-top:6px;}
+.progress-mini-fill{height:100%;background:linear-gradient(90deg,var(--navy-700),var(--navy-900));border-radius:20px;}
+
+.modal-overlay{position:fixed;inset:0;background:rgba(8,15,28,.6);z-index:70;display:flex;align-items:flex-end;justify-content:center;}
+.modal-card{
+  background:#fff;width:100%;max-width:480px;max-height:92vh;overflow-y:auto;border-radius:22px 22px 0 0;
+  box-shadow:var(--shadow-pop);animation:slideUp .22s ease;
+}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0;}to{transform:translateY(0);opacity:1;}}
+@media(min-width:640px){
+  .modal-overlay{align-items:center;}
+  .modal-card{border-radius:22px;margin:20px;}
+}
+.modal-head{
+  position:sticky;top:0;background:linear-gradient(135deg,var(--navy-900),var(--navy-800));color:#fff;
+  padding:16px 16px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--gold-600);z-index:2;
+}
+.modal-head h2{font-size:16px;font-weight:700;margin:0;flex:1;}
+.modal-body{padding:16px;}
+.form-group{margin-bottom:13px;}
+.form-label{font-size:11.5px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:.4px;margin-bottom:5px;display:block;}
+.form-control{width:100%;border:1px solid var(--line);border-radius:11px;padding:10px 12px;font-size:14px;background:#F8F9FB;outline:none;}
+.form-control:focus{border-color:var(--gold-600);background:#fff;}
+.form-control.err{border-color:var(--red);background:var(--red-bg);}
+.form-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+.form-hint{font-size:11px;color:var(--text-soft);margin-top:4px;}
+.form-hint.err{color:var(--red-txt);font-weight:600;}
+
+.toast-root{position:fixed;left:0;right:0;bottom:86px;z-index:90;display:flex;flex-direction:column;align-items:center;gap:8px;pointer-events:none;}
+.toast{background:var(--navy-950);color:#fff;padding:11px 18px;border-radius:30px;font-size:13px;font-weight:600;box-shadow:var(--shadow-pop);display:flex;align-items:center;gap:8px;animation:toastIn .2s ease;}
+@keyframes toastIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+.insight-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:50px 20px;gap:14px;}
+.spinner{width:38px;height:38px;border-radius:50%;border:4px solid #EEF0F4;border-top-color:var(--gold-600);animation:spin .8s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.rec-card{border:1px solid var(--line);border-radius:14px;padding:12px 13px;margin-bottom:10px;background:#FAFBFD;}
+.rec-num{width:24px;height:24px;border-radius:50%;background:var(--navy-900);color:var(--gold-400);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.rec-top{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+.rec-title{font-size:13.5px;font-weight:700;color:var(--navy-900);}
+.rec-detail{font-size:12.5px;color:var(--text-muted);line-height:1.5;margin-left:33px;}
+.insight-stat{background:#F8F9FB;border-radius:12px;padding:10px;text-align:center;}
+.insight-stat b{display:block;font-size:16px;color:var(--navy-900);}
+.insight-stat span{font-size:10.5px;color:var(--text-muted);}
+
+.bar-row{display:flex;align-items:center;gap:8px;margin-bottom:9px;}
+.bar-label{width:110px;flex-shrink:0;font-size:11.5px;color:var(--text-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.bar-track{flex:1;height:16px;background:#EEF0F4;border-radius:8px;overflow:hidden;}
+.bar-fill{height:100%;background:linear-gradient(90deg,var(--navy-700),var(--navy-900));border-radius:8px;}
+.bar-fill.gold{background:linear-gradient(90deg,var(--gold-600),var(--gold-400));}
+.bar-val{width:70px;flex-shrink:0;text-align:right;font-size:11.5px;font-weight:700;color:var(--navy-900);}
+
+.empty-state{text-align:center;padding:40px 20px;color:var(--text-muted);}
+.empty-state .emo{font-size:36px;margin-bottom:8px;}
+
+.notes-list{display:flex;flex-direction:column;gap:8px;margin-top:8px;max-height:160px;overflow-y:auto;}
+.note-item{background:#F8F9FB;border-radius:10px;padding:8px 10px;font-size:12.5px;color:var(--text-dark);}
+.note-date{font-size:10.5px;color:var(--text-soft);margin-bottom:2px;font-weight:600;}
+
+@media(min-width:992px){
+  .app-shell{padding-bottom:0;}
+  .bottom-nav{display:none;}
+  .drawer-overlay{display:none;}
+  .sidebar{transform:translateX(0);position:fixed;box-shadow:4px 0 24px rgba(8,21,39,.08);}
+  .main{margin-left:280px;padding:26px 32px;max-width:1400px;}
+  .topbar{margin-left:280px;padding-left:22px;}
+  .drawer-close{display:none;}
+  .kpi-grid{grid-template-columns:repeat(5,1fr);}
+  .fab{right:36px;bottom:36px;}
+}
+@media(min-width:600px) and (max-width:991px){
+  .kpi-grid{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<aside class="sidebar" id="sidebar">
+  <div class="brand-row">
+    <div class="brand-logo brandfont">RA</div>
+    <div class="brand-text">
+      <span class="brand-name brandfont">Rosale's Adventures</span>
+      <span class="brand-sub">SALES OS</span>
+    </div>
+    <button class="drawer-close" onclick="closeDrawer()">&#10005;</button>
+  </div>
+  <nav class="nav-list" id="navList"></nav>
+  <div class="sidebar-footer">
+    <button class="btn-settings" onclick="openSettings()">&#9881;&#65039; Ajustes de meta</button>
+  </div>
+</aside>
+
+<div class="app-shell">
+  <header class="topbar">
+    <button class="icon-btn" onclick="openDrawer()">&#9776;</button>
+    <div class="topbar-titles">
+      <div class="topbar-title" id="topbarTitle">Dashboard</div>
+      <div class="topbar-sub" id="topbarDate"></div>
+    </div>
+    <button class="icon-btn" onclick="setView('seguimientos')" aria-label="Seguimientos">
+      &#128276;
+      <span class="badge-dot" id="alertBadge" style="display:none;"></span>
+    </button>
+  </header>
+
+  <main class="main" id="main"></main>
+
+  <nav class="bottom-nav">
+    <button class="bn-item" data-view="dashboard" onclick="setView('dashboard')"><span class="ico">&#127968;</span>Hoy</button>
+    <button class="bn-item" data-view="pipeline" onclick="setView('pipeline')"><span class="ico">&#129517;</span>Pipeline</button>
+    <button class="bn-item" data-view="crm" onclick="setView('crm')"><span class="ico">&#128101;</span>CRM</button>
+    <button class="bn-item" data-view="seguimientos" onclick="setView('seguimientos')"><span class="ico">&#9200;</span>Seguir</button>
+    <button class="bn-item" onclick="openDrawer()"><span class="ico">&#9776;</span>Más</button>
+  </nav>
+</div>
+
+<div id="modalRoot"></div>
+<div class="toast-root" id="toastRoot"></div>
+
+<script>
+function pad2(n){return String(n).padStart(2,'0');}
+function toISO(d){return d.getFullYear()+'-'+pad2(d.getMonth()+1)+'-'+pad2(d.getDate());}
+function todayDate(){var d=new Date();d.setHours(0,0,0,0);return d;}
+function parseISO(s){if(!s)return null;var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+function addDays(d,n){var r=new Date(d);r.setDate(r.getDate()+n);return r;}
+function rel(n){return toISO(addDays(todayDate(),n));}
+function daysDiff(a,b){return Math.round((a-b)/86400000);}
+function fmtMoney(n){if(n==null||isNaN(n))return '$0';return new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0}).format(Math.round(n));}
+function fmtDate(s){if(!s)return 'Sin fecha';var d=parseISO(s);return d.toLocaleDateString('es-MX',{day:'numeric',month:'short'});}
+function fmtDateLong(s){if(!s)return 'Sin fecha';var d=parseISO(s);return d.toLocaleDateString('es-MX',{day:'numeric',month:'long',year:'numeric'});}
+function esc(s){if(s==null)return '';return String(s).replace(/[&<>"']/g,function(c){return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[c];});}
+function uid(){return 'c'+Math.random().toString(36).slice(2,9);}
+function initials(name){var p=name.trim().split(/\s+/);return ((p[0]||'')[0]+((p[1]||'')[0]||'')).toUpperCase();}
+function avatarColor(name){var colors=['#0B1F3A','#1E3A5F','#A9862F','#2C4D78','#7C5A1E'];var h=0;for(var i=0;i<name.length;i++)h+=name.charCodeAt(i);return colors[h%colors.length];}
+function waLink(phone,msg){return 'https://wa.me/'+phone+(msg?('?text='+encodeURIComponent(msg)):'');}
+
+var STAGES=[
+ {key:'Nuevo lead',short:'Nuevo',color:'#64748B'},
+ {key:'Contactado',short:'Contactado',color:'#2563EB'},
+ {key:'Calificado',short:'Calificado',color:'#6366F1'},
+ {key:'Cotización enviada',short:'Cotizado',color:'#8B5CF6'},
+ {key:'Seguimiento',short:'Seguimiento',color:'#CA8A04'},
+ {key:'Negociación',short:'Negociación',color:'#EA580C'},
+ {key:'Apartado',short:'Apartado',color:'#0EA5E9'},
+ {key:'Reserva confirmada',short:'Confirmada',color:'#0D9488'},
+ {key:'Viaje realizado',short:'Realizado',color:'#16A34A'},
+ {key:'Cliente recurrente',short:'Recurrente',color:'#A9862F'}
+];
+var WON_STAGES=['Apartado','Reserva confirmada','Viaje realizado','Cliente recurrente'];
+var TERMINAL_STAGES=['Viaje realizado','Cliente recurrente'];
+function stageInfo(key){for(var i=0;i<STAGES.length;i++)if(STAGES[i].key===key)return STAGES[i];return STAGES[0];}
+function stageIndex(key){for(var i=0;i<STAGES.length;i++)if(STAGES[i].key===key)return i;return 0;}
+
+function seedData(){
+ var C=[];
+ function add(o){
+  o.id=uid();
+  o.menores=o.menores||[];
+  o.notas=o.notas||[];
+  o.perdido=!!o.perdido;
+  o.referidoPor=o.referidoPor||null;
+  o.valorVenta=o.valorVenta||null;
+  o.valorCotizado=o.valorCotizado||null;
+  o.anticipoPagado=o.anticipoPagado||0;
+  o.utilidadPct=o.utilidadPct||0.18;
+  o.probabilidad=o.probabilidad||10;
+  o.fechaApartado=o.fechaApartado||null;
+  o.fechaInicio=o.fechaInicio||null;
+  o.fechaFin=o.fechaFin||null;
+  C.push(o);
+ }
+ add({nombre:'Fernanda Torres',whatsapp:'524531001122',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Cancún',hotel:'Riu Palace Península',adultos:2,menores:[],presupuesto:38000,etapa:'Nuevo lead',probabilidad:10,ultimoContacto:rel(-2),proximoSeguimiento:rel(1),creadoEn:rel(-2),notas:[{fecha:rel(-2),texto:'Escribió por Instagram preguntando por promo de aniversario.'}]});
+ add({nombre:'Jorge Delgado',whatsapp:'524531002233',ciudad:'Uruapan',fuente:'Facebook',tipoViaje:'Nacional Playa',destino:'Riviera Maya',hotel:'Iberostar Selection Paraíso',adultos:2,menores:[{edad:6}],presupuesto:42000,etapa:'Nuevo lead',probabilidad:10,ultimoContacto:null,proximoSeguimiento:rel(0),creadoEn:rel(-1),notas:[]});
+ add({nombre:'Paola Nuñez',whatsapp:'524531003344',ciudad:'Apatzingán',fuente:'Referido',referidoPor:'Miguel Ángel Soto',tipoViaje:'Nacional Playa',destino:'Los Cabos',hotel:'Secrets Puerto Los Cabos',adultos:2,menores:[],presupuesto:55000,etapa:'Nuevo lead',probabilidad:15,ultimoContacto:rel(-5),proximoSeguimiento:null,creadoEn:rel(-5),notas:[{fecha:rel(-5),texto:'Referida por Miguel Ángel. Interesada en Los Cabos para su aniversario.'}]});
+
+ add({nombre:'Ricardo Salgado',whatsapp:'524531004455',ciudad:'Zamora',fuente:'WhatsApp',tipoViaje:'Nacional Playa',destino:'Puerto Vallarta',hotel:'Dreams Vallarta Bahía',adultos:2,menores:[{edad:9},{edad:12}],presupuesto:47000,etapa:'Contactado',probabilidad:20,ultimoContacto:rel(-1),proximoSeguimiento:rel(2),creadoEn:rel(-4),notas:[]});
+ add({nombre:'Daniela Cortés',whatsapp:'524531005566',ciudad:'Apatzingán',fuente:'Google',tipoViaje:'Nacional Playa',destino:'Mazatlán',hotel:'Pueblo Bonito Emerald Bay',adultos:2,menores:[],presupuesto:30000,etapa:'Contactado',probabilidad:20,ultimoContacto:rel(-3),proximoSeguimiento:rel(-1),creadoEn:rel(-6),notas:[]});
+ add({nombre:'Emmanuel Ríos',whatsapp:'524531006677',ciudad:'Lázaro Cárdenas',fuente:'TikTok',tipoViaje:'Nacional Playa',destino:'Huatulco',hotel:'Secrets Huatulco',adultos:2,menores:[],presupuesto:33000,etapa:'Contactado',probabilidad:22,ultimoContacto:rel(0),proximoSeguimiento:rel(3),creadoEn:rel(-2),notas:[]});
+
+ add({nombre:'Sofía Vargas',whatsapp:'524531007788',ciudad:'Morelia',fuente:'Instagram',tipoViaje:'Circuito Grupal',destino:'Circuito Europa Mágica 12D/10N',hotel:'Circuito 8 países',adultos:2,menores:[],presupuesto:145000,etapa:'Calificado',probabilidad:30,ultimoContacto:rel(-2),proximoSeguimiento:rel(1),creadoEn:rel(-9),notas:[{fecha:rel(-2),texto:'Le interesa salida de octubre. Está comparando con otra agencia.'}]});
+ add({nombre:'Luis Fernando Peña',whatsapp:'524531008899',ciudad:'Apatzingán',fuente:'Referido',referidoPor:'Ana Laura Medina',tipoViaje:'Internacional',destino:'Punta Cana',hotel:'Dreams Punta Cana',adultos:2,menores:[],presupuesto:58000,etapa:'Calificado',probabilidad:32,ultimoContacto:rel(-4),proximoSeguimiento:rel(0),creadoEn:rel(-10),notas:[]});
+
+ add({nombre:'Andrea Michel Torres',whatsapp:'524531009900',ciudad:'Apatzingán',fuente:'Facebook',tipoViaje:'Nacional Playa',destino:'Cancún',hotel:'Hard Rock Cancún',adultos:2,menores:[{edad:4}],presupuesto:46000,valorCotizado:48000,etapa:'Cotización enviada',probabilidad:40,ultimoContacto:rel(-6),proximoSeguimiento:rel(-3),creadoEn:rel(-12),notas:[{fecha:rel(-6),texto:'Cotización enviada por WhatsApp, dijo que la revisaba con su esposo.'}]});
+ add({nombre:'Héctor Manuel Ibarra',whatsapp:'524531010011',ciudad:'Uruapan',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Los Cabos',hotel:'Secrets Puerto Los Cabos',adultos:2,menores:[],presupuesto:60000,valorCotizado:62000,etapa:'Cotización enviada',probabilidad:42,ultimoContacto:rel(-2),proximoSeguimiento:rel(2),creadoEn:rel(-8),notas:[]});
+ add({nombre:'Karla Jiménez',whatsapp:'524531011122',ciudad:'Apatzingán',fuente:'Google',tipoViaje:'Internacional',destino:'Nueva York',hotel:'Paquete NY 5 días',adultos:2,menores:[],presupuesto:80000,valorCotizado:85000,etapa:'Cotización enviada',probabilidad:35,ultimoContacto:rel(-8),proximoSeguimiento:null,creadoEn:rel(-15),notas:[{fecha:rel(-8),texto:'Cotización de alto valor. Pidió opciones de pago en dólares.'}]});
+ add({nombre:'Oscar Iván Chávez',whatsapp:'524531012233',ciudad:'Zamora',fuente:'Boca a boca',tipoViaje:'Nacional Playa',destino:'Riviera Maya',hotel:'Iberostar Selection Paraíso',adultos:2,menores:[{edad:2}],presupuesto:37000,valorCotizado:39000,etapa:'Cotización enviada',probabilidad:38,ultimoContacto:rel(-1),proximoSeguimiento:rel(1),creadoEn:rel(-5),notas:[]});
+
+ add({nombre:'Brenda Lucero Salas',whatsapp:'524531013344',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Cancún',hotel:'Barceló Maya Palace',adultos:2,menores:[{edad:7}],presupuesto:43000,valorCotizado:45000,etapa:'Seguimiento',probabilidad:45,ultimoContacto:rel(-5),proximoSeguimiento:rel(-2),creadoEn:rel(-18),notas:[{fecha:rel(-5),texto:'Pidió tiempo para juntar el anticipo.'}]});
+ add({nombre:'Iván Alejandro Mora',whatsapp:'524531014455',ciudad:'Uruapan',fuente:'Feria de viajes',tipoViaje:'Nacional Playa',destino:'Huatulco',hotel:'Secrets Huatulco',adultos:2,menores:[],presupuesto:26000,valorCotizado:27000,etapa:'Seguimiento',probabilidad:50,ultimoContacto:rel(-1),proximoSeguimiento:rel(0),creadoEn:rel(-14),notas:[]});
+ add({nombre:'Gabriela Reyes Ponce',whatsapp:'524531015566',ciudad:'Apatzingán',fuente:'Facebook',tipoViaje:'Nacional Playa',destino:'Mazatlán',hotel:'Pueblo Bonito Emerald Bay',adultos:2,menores:[],presupuesto:23000,valorCotizado:24000,etapa:'Seguimiento',probabilidad:15,ultimoContacto:rel(-20),proximoSeguimiento:rel(-10),creadoEn:rel(-35),perdido:true,notas:[{fecha:rel(-20),texto:'Dejó de responder. Probablemente reservó con otra agencia.'}]});
+
+ add({nombre:'Miguel Ángel Soto',whatsapp:'524531016677',ciudad:'Apatzingán',fuente:'Referido',referidoPor:'Patricia Elena Guzmán',tipoViaje:'Nacional Playa',destino:'Los Cabos',hotel:'Secrets Puerto Los Cabos',adultos:2,menores:[],presupuesto:56000,valorCotizado:58000,etapa:'Negociación',probabilidad:85,ultimoContacto:rel(0),proximoSeguimiento:rel(1),creadoEn:rel(-11),notas:[{fecha:rel(0),texto:'Solo falta confirmar hotel. Listo para apartar esta semana.'}]});
+ add({nombre:'Ana Laura Medina',whatsapp:'524531017788',ciudad:'Morelia',fuente:'Instagram',tipoViaje:'Circuito Grupal',destino:'Circuito Japón Imperial 10D',hotel:'Circuito Tokio-Kioto-Osaka',adultos:2,menores:[],presupuesto:140000,valorCotizado:145000,etapa:'Negociación',probabilidad:75,ultimoContacto:rel(-1),proximoSeguimiento:rel(2),creadoEn:rel(-16),notas:[]});
+ add({nombre:'Jesús Armando Cabrera',whatsapp:'524531018899',ciudad:'Apatzingán',fuente:'Google Ads',tipoViaje:'Nacional Playa',destino:'Puerto Vallarta',hotel:'Dreams Vallarta Bahía',adultos:2,menores:[],presupuesto:34000,valorCotizado:36000,etapa:'Negociación',probabilidad:20,ultimoContacto:rel(-15),proximoSeguimiento:rel(-8),creadoEn:rel(-30),perdido:true,notas:[{fecha:rel(-15),texto:'Dijo que el precio estaba muy arriba de su presupuesto.'}]});
+
+ add({nombre:'Diana Carolina Núñez',whatsapp:'524531019900',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Ixtapa Zihuatanejo',hotel:'Hotel Posada Real',adultos:2,menores:[{edad:3},{edad:5}],presupuesto:9599,valorCotizado:9599,valorVenta:9599,anticipoPagado:500,utilidadPct:0.16,etapa:'Apartado',probabilidad:100,fechaInicio:rel(25),fechaFin:rel(28),fechaApartado:rel(-10),ultimoContacto:rel(-3),proximoSeguimiento:rel(5),creadoEn:rel(-20),notas:[{fecha:rel(-10),texto:'Apartó con $500. Falta liquidar antes del 14 de febrero.'}]});
+ add({nombre:'Rodrigo Alfonso Peña',whatsapp:'524531020011',ciudad:'Apatzingán',fuente:'Referido',referidoPor:'Miguel Ángel Soto',tipoViaje:'Nacional Playa',destino:'Cancún',hotel:'Hard Rock Cancún',adultos:2,menores:[{edad:10}],presupuesto:50000,valorCotizado:52000,valorVenta:52000,anticipoPagado:5000,utilidadPct:0.18,etapa:'Apartado',probabilidad:100,fechaInicio:rel(60),fechaFin:rel(65),fechaApartado:rel(-20),ultimoContacto:rel(-10),proximoSeguimiento:rel(10),creadoEn:rel(-28),notas:[]});
+ add({nombre:'Cynthia Paola Rangel',whatsapp:'524531021122',ciudad:'Zamora',fuente:'Facebook',tipoViaje:'Nacional Playa',destino:'Los Cabos',hotel:'Secrets Puerto Los Cabos',adultos:2,menores:[],presupuesto:59000,valorCotizado:61000,valorVenta:61000,anticipoPagado:10000,utilidadPct:0.19,etapa:'Apartado',probabilidad:100,fechaInicio:rel(40),fechaFin:rel(44),fechaApartado:rel(-5),ultimoContacto:rel(-2),proximoSeguimiento:rel(12),creadoEn:rel(-19),notas:[]});
+
+ add({nombre:'Fernando Josué Aguilar',whatsapp:'524531022233',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Riviera Maya',hotel:'Iberostar Selection Paraíso',adultos:2,menores:[{edad:8}],presupuesto:45000,valorCotizado:47000,valorVenta:47000,anticipoPagado:47000,utilidadPct:0.18,etapa:'Reserva confirmada',probabilidad:100,fechaInicio:rel(15),fechaFin:rel(19),fechaApartado:rel(-35),ultimoContacto:rel(-5),proximoSeguimiento:rel(14),creadoEn:rel(-50),notas:[{fecha:rel(-35),texto:'Liquidado por completo. Solo falta enviar itinerario final.'}]});
+ add({nombre:'Lucía Montserrat Ibarra',whatsapp:'524531023344',ciudad:'Morelia',fuente:'Referido',referidoPor:'Fernando Josué Aguilar',tipoViaje:'Circuito Grupal',destino:'Circuito Europa Mágica 12D/10N',hotel:'Circuito 8 países',adultos:2,menores:[],presupuesto:165000,valorCotizado:168000,valorVenta:168000,anticipoPagado:168000,utilidadPct:0.20,etapa:'Reserva confirmada',probabilidad:100,fechaInicio:rel(50),fechaFin:rel(62),fechaApartado:rel(-40),ultimoContacto:rel(-8),proximoSeguimiento:rel(20),creadoEn:rel(-60),notas:[]});
+
+ add({nombre:'Patricia Elena Guzmán',whatsapp:'524531024455',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Cancún',hotel:'Riu Palace Península',adultos:2,menores:[],presupuesto:44000,valorCotizado:44000,valorVenta:44000,anticipoPagado:44000,utilidadPct:0.18,etapa:'Viaje realizado',probabilidad:100,fechaInicio:rel(-60),fechaFin:rel(-55),fechaApartado:rel(-100),ultimoContacto:rel(-55),proximoSeguimiento:null,creadoEn:rel(-110),notas:[{fecha:rel(-55),texto:'Viaje excelente, mandó fotos preciosas. Candidata a pedir reseña.'}]});
+ add({nombre:'Roberto Carlos Villaseñor',whatsapp:'524531025566',ciudad:'Uruapan',fuente:'Facebook',tipoViaje:'Nacional Playa',destino:'Puerto Vallarta',hotel:'Dreams Vallarta Bahía',adultos:2,menores:[{edad:5},{edad:9}],presupuesto:38000,valorCotizado:38000,valorVenta:38000,anticipoPagado:38000,utilidadPct:0.17,etapa:'Viaje realizado',probabilidad:100,fechaInicio:rel(-40),fechaFin:rel(-36),fechaApartado:rel(-90),ultimoContacto:rel(-36),proximoSeguimiento:null,creadoEn:rel(-100),notas:[]});
+ add({nombre:'Alejandra Nohemí Torres',whatsapp:'524531026677',ciudad:'Apatzingán',fuente:'Google',tipoViaje:'Nacional Playa',destino:'Los Cabos',hotel:'Secrets Puerto Los Cabos',adultos:2,menores:[],presupuesto:55000,valorCotizado:55000,valorVenta:55000,anticipoPagado:55000,utilidadPct:0.19,etapa:'Viaje realizado',probabilidad:100,fechaInicio:rel(-90),fechaFin:rel(-85),fechaApartado:rel(-140),ultimoContacto:rel(-85),proximoSeguimiento:null,creadoEn:rel(-150),notas:[]});
+
+ add({nombre:'Sofía Elizabeth Ramos',whatsapp:'524531027788',ciudad:'Apatzingán',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'Riviera Maya',hotel:'Iberostar Selection Paraíso',adultos:2,menores:[{edad:11}],presupuesto:49000,valorCotizado:49000,valorVenta:49000,anticipoPagado:49000,utilidadPct:0.18,etapa:'Cliente recurrente',probabilidad:100,fechaInicio:rel(-200),fechaFin:rel(-195),fechaApartado:rel(-230),ultimoContacto:rel(-30),proximoSeguimiento:rel(30),creadoEn:rel(-400),notas:[{fecha:rel(-30),texto:'Va por su tercer viaje con nosotros. Excelente cliente, siempre refiere gente.'}]});
+ add({nombre:'Juan Pablo Estrada',whatsapp:'524531028899',ciudad:'Zamora',fuente:'Referido',referidoPor:'Sofía Elizabeth Ramos',tipoViaje:'Circuito Grupal',destino:'Circuito Egipto Clásico 9D',hotel:'Circuito El Cairo-Luxor-Asuán',adultos:2,menores:[],presupuesto:130000,valorCotizado:132000,valorVenta:132000,anticipoPagado:132000,utilidadPct:0.21,etapa:'Cliente recurrente',probabilidad:100,fechaInicio:rel(-300),fechaFin:rel(-288),fechaApartado:rel(-330),ultimoContacto:rel(-45),proximoSeguimiento:rel(45),creadoEn:rel(-500),notas:[]});
+
+ return C;
+}
+
+var STORAGE_KEY='rosalesAdventuresSalesOS_v2';
+function loadSaved(){
+ try{
+  var raw=localStorage.getItem(STORAGE_KEY);
+  if(raw){var d=JSON.parse(raw);if(d&&d.clientes)return d;}
+ }catch(e){}
+ return null;
+}
+var SAVED=loadSaved();
+
+var state={
+ view:'dashboard',
+ meta:(SAVED&&SAVED.meta)?SAVED.meta:50000,
+ clientes:(SAVED&&SAVED.clientes)?SAVED.clientes:[],
+ filtroCRM:{q:'',etapa:'todas'},
+ filtroCot:'todas'
+};
+function saveState(){
+ try{localStorage.setItem(STORAGE_KEY,JSON.stringify({clientes:state.clientes,meta:state.meta}));}catch(e){}
+}
+if(!SAVED)saveState();
+
+function activos(){return state.clientes.filter(function(c){return !c.perdido;});}
+function urgencia(c){
+ if(TERMINAL_STAGES.indexOf(c.etapa)!==-1||c.perdido)return 'none';
+ if(!c.proximoSeguimiento)return 'sinfecha';
+ var d=daysDiff(parseISO(c.proximoSeguimiento),todayDate());
+ if(d<0)return 'vencido';
+ if(d===0)return 'hoy';
+ if(d<=5)return 'proximo';
+ return 'futuro';
+}
+function esListoParaCerrar(c){
+ return !c.perdido && (c.etapa==='Negociación'||c.etapa==='Apartado') && urgencia(c)!=='vencido';
+}
+function clienteValor(c){return c.valorVenta||c.valorCotizado||c.presupuesto||0;}
+
+function kpis(){
+ var C=activos();
+ var now=todayDate();
+ var won=C.filter(function(c){return WON_STAGES.indexOf(c.etapa)!==-1;});
+ var ventasMes=won.filter(function(c){
+  if(!c.fechaApartado)return false;
+  var d=parseISO(c.fechaApartado);
+  return d.getFullYear()===now.getFullYear() && d.getMonth()===now.getMonth();
+ });
+ var ventasActuales=ventasMes.reduce(function(s,c){return s+(c.valorVenta||0);},0);
+ var leadsNuevos=C.filter(function(c){return c.etapa==='Nuevo lead';}).length;
+ var cotizacionesEnviadas=C.filter(function(c){return c.valorCotizado!=null;}).length;
+ var reservasCerradas=won.length;
+ var conversion=C.length? (reservasCerradas/C.length*100):0;
+ var ticketProm=won.length? (won.reduce(function(s,c){return s+(c.valorVenta||0);},0)/won.length):0;
+ var utilidadEstimada=won.reduce(function(s,c){return s+((c.valorVenta||0)*(c.utilidadPct||0));},0);
+ var pendienteCobrar=C.filter(function(c){return c.etapa==='Apartado'||c.etapa==='Reserva confirmada';})
+   .reduce(function(s,c){return s+Math.max(0,(c.valorVenta||0)-(c.anticipoPagado||0));},0);
+ var segHoy=C.filter(function(c){return urgencia(c)==='hoy';}).length;
+ var pct=state.meta? Math.min(100,Math.round(ventasActuales/state.meta*100)):0;
+ return {ventasActuales:ventasActuales,leadsNuevos:leadsNuevos,cotizacionesEnviadas:cotizacionesEnviadas,
+  reservasCerradas:reservasCerradas,conversion:conversion,ticketProm:ticketProm,utilidadEstimada:utilidadEstimada,
+  pendienteCobrar:pendienteCobrar,segHoy:segHoy,pct:pct};
+}
+
+function alertCount(){
+ return activos().filter(function(c){var u=urgencia(c);return u==='vencido'||u==='hoy'||u==='sinfecha';}).length;
+}
+
+var NAV=[
+ {id:'dashboard',label:'Dashboard',ico:'&#127968;'},
+ {id:'crm',label:'CRM de clientes',ico:'&#128101;'},
+ {id:'pipeline',label:'Pipeline de ventas',ico:'&#129517;'},
+ {id:'cotizaciones',label:'Cotizaciones',ico:'&#128196;'},
+ {id:'seguimientos',label:'Seguimientos',ico:'&#9200;'},
+ {id:'reservas',label:'Reservas',ico:'&#129523;'},
+ {id:'cobranza',label:'Cobranza',ico:'&#128179;'},
+ {id:'anteriores',label:'Clientes anteriores',ico:'&#128193;'},
+ {id:'referidos',label:'Referidos',ico:'&#127873;'},
+ {id:'reportes',label:'Reportes',ico:'&#128202;'}
+];
+var VIEW_TITLES={dashboard:'Dashboard',crm:'CRM de clientes',pipeline:'Pipeline de ventas',cotizaciones:'Cotizaciones',
+ seguimientos:'Seguimientos',reservas:'Reservas',cobranza:'Cobranza',anteriores:'Clientes anteriores',
+ referidos:'Referidos',reportes:'Reportes'};
+
+function openDrawer(){document.getElementById('sidebar').classList.add('open');document.getElementById('drawerOverlay').classList.add('open');}
+function closeDrawer(){document.getElementById('sidebar').classList.remove('open');document.getElementById('drawerOverlay').classList.remove('open');}
+function setView(v){state.view=v;closeDrawer();closeModal();renderApp();window.scrollTo(0,0);}
+
+function openModal(html){
+ document.getElementById('modalRoot').innerHTML='<div class="modal-overlay" id="modalOverlay" onclick="if(event.target===this)closeModal()"><div class="modal-card">'+html+'</div></div>';
+ document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modalRoot').innerHTML='';document.body.style.overflow='';}
+
+function toast(msg,emo){
+ emo=emo||'&#10003;';
+ var root=document.getElementById('toastRoot');
+ var t=document.createElement('div');
+ t.className='toast';
+ t.innerHTML='<span>'+emo+'</span><span>'+esc(msg)+'</span>';
+ root.appendChild(t);
+ setTimeout(function(){t.style.transition='opacity .3s';t.style.opacity='0';setTimeout(function(){t.remove();},300);},2400);
+}
+
+function renderNav(){
+ var html=NAV.map(function(n){
+  var active=state.view===n.id?' active':'';
+  return '<button class="nav-item'+active+'" onclick="setView(\''+n.id+'\')"><span class="ico">'+n.ico+'</span>'+n.label+'</button>';
+ }).join('');
+ document.getElementById('navList').innerHTML=html;
+}
+
+function renderApp(){
+ renderNav();
+ document.getElementById('topbarTitle').textContent=VIEW_TITLES[state.view]||'Dashboard';
+ document.getElementById('topbarDate').textContent=todayDate().toLocaleDateString('es-MX',{weekday:'long',day:'numeric',month:'long'});
+ document.querySelectorAll('.bn-item[data-view]').forEach(function(b){
+  b.classList.toggle('active',b.getAttribute('data-view')===state.view);
+ });
+ var ac=alertCount();
+ var badge=document.getElementById('alertBadge');
+ if(ac>0){badge.style.display='flex';badge.textContent=ac>9?'9+':ac;}else{badge.style.display='none';}
+ var main=document.getElementById('main');
+ var renderers={
+  dashboard:renderDashboard,crm:renderCRM,pipeline:renderPipeline,cotizaciones:renderCotizaciones,
+  seguimientos:renderSeguimientos,reservas:renderReservas,cobranza:renderCobranza,
+  anteriores:renderAnteriores,referidos:renderReferidos,reportes:renderReportes
+ };
+ main.innerHTML=(renderers[state.view]||renderDashboard)();
+}
+
+function openSettings(){
+ openModal(
+  '<div class="modal-head"><h2>Ajustes</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+  '<div class="modal-body">'+
+   '<div class="form-group"><label class="form-label">Meta mensual (MXN)</label>'+
+   '<input class="form-control" id="metaInput" type="number" value="'+state.meta+'"></div>'+
+   '<button class="btn btn-gold btn-block" onclick="saveMeta()">Guardar meta</button>'+
+   '<div style="border-top:1px solid var(--line);margin:20px 0 14px;"></div>'+
+   '<div class="form-label" style="margin-bottom:8px;">Datos guardados en este dispositivo</div>'+
+   '<div class="form-hint" style="margin-bottom:12px;">Tu información se guarda automáticamente en este navegador. Si abres la app en otro celular o compu, no la verás ahí.</div>'+
+   '<button class="btn btn-ghost btn-block" style="margin-bottom:8px;" onclick="resetToSample()">&#8635; Restablecer datos de ejemplo</button>'+
+   '<button class="btn btn-danger btn-block" onclick="clearAllData()">&#128465;&#65039; Borrar todo y empezar de cero</button>'+
+  '</div>'
+ );
+}
+function saveMeta(){
+ var v=parseFloat(document.getElementById('metaInput').value);
+ if(!isNaN(v)&&v>0){state.meta=v;saveState();closeModal();renderApp();toast('Meta mensual actualizada');}
+}
+function resetToSample(){
+ if(!confirm('Esto reemplaza todos tus clientes actuales por los datos de ejemplo. ¿Continuar?'))return;
+ state.clientes=seedData();
+ state.meta=520000;
+ saveState();
+ closeModal();renderApp();
+ toast('Datos de ejemplo restablecidos');
+}
+function clearAllData(){
+ if(!confirm('Esto borra TODOS los clientes guardados en este dispositivo. Esta acción no se puede deshacer. ¿Continuar?'))return;
+ state.clientes=[];
+ saveState();
+ closeModal();renderApp();
+ toast('Todos los datos fueron borrados');
+}
+
+function priorityScore(c){
+ var u=urgencia(c);var score=0;
+ if(u==='vencido')score+=100+Math.min(30,Math.abs(daysDiff(parseISO(c.proximoSeguimiento),todayDate())));
+ if(u==='sinfecha')score+=90;
+ if(u==='hoy')score+=70;
+ if(esListoParaCerrar(c))score+=50;
+ if(u==='proximo')score+=20;
+ score+=Math.min(20,(clienteValor(c)||0)/5000);
+ return score;
+}
+function urgTag(c){
+ var u=urgencia(c);
+ if(u==='vencido')return {cls:'b-red',dot:'dot-red',label:'Vencido'};
+ if(u==='sinfecha')return {cls:'b-red',dot:'dot-red',label:'Sin fecha'};
+ if(u==='hoy')return {cls:'b-orange',dot:'dot-orange',label:'Hoy'};
+ if(u==='proximo')return {cls:'b-yellow',dot:'dot-yellow',label:'Próximo'};
+ if(esListoParaCerrar(c))return {cls:'b-green',dot:'dot-green',label:'Listo p/cerrar'};
+ return {cls:'b-gray',dot:'dot-gray',label:'Al día'};
+}
+function stageBadge(c){
+ var s=stageInfo(c.etapa);
+ var style='background:'+s.color+'22;color:'+s.color+';';
+ return '<span class="badge" style="'+style+'">'+esc(s.short)+'</span>';
+}
+
+function hotList(){
+ return activos()
+  .filter(function(c){var u=urgencia(c);return u==='vencido'||u==='sinfecha'||u==='hoy'||esListoParaCerrar(c);})
+  .sort(function(a,b){return priorityScore(b)-priorityScore(a);})
+  .slice(0,8);
+}
+
+function clientRowHot(c){
+ var t=urgTag(c);
+ var color=avatarColor(c.nombre);
+ return '<div class="hot-row">'+
+  '<div class="avatar" style="background:'+color+'">'+initials(c.nombre)+'</div>'+
+  '<div class="hot-info">'+
+   '<div class="hot-name">'+esc(c.nombre)+'</div>'+
+   '<div class="hot-meta">'+esc(c.destino)+' &middot; '+fmtMoney(clienteValor(c))+' &middot; '+esc(t.label)+'</div>'+
+  '</div>'+
+  '<div class="hot-actions">'+
+   '<a class="icon-round wa" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', te escribo de Rosale’s Adventures para darte seguimiento a tu viaje a '+c.destino+' \u{1F60A}')+'" target="_blank" rel="noopener" aria-label="WhatsApp">&#128242;</a>'+
+   '<button class="icon-round view" onclick="openClientModal(\''+c.id+'\')" aria-label="Ver">&#128065;</button>'+
+  '</div>'+
+ '</div>';
+}
+
+function renderDashboard(){
+ var k=kpis();
+ var hot=hotList();
+ var goalWidth=k.pct;
+ return ''+
+ '<div class="view-head"><h1>Hola, Alejandro &#128075;</h1><p>Esto es lo que importa hoy para vender más.</p></div>'+
+ '<div class="goal-card">'+
+  '<div class="goal-top"><span class="goal-label">Meta mensual</span><span class="goal-pct">'+k.pct+'%</span></div>'+
+  '<div class="goal-nums"><span>Ventas actuales<br><b>'+fmtMoney(k.ventasActuales)+'</b></span>'+
+  '<span style="text-align:right">Meta<br><b>'+fmtMoney(state.meta)+'</b></span></div>'+
+  '<div class="progress-track"><div class="progress-fill" style="width:'+goalWidth+'%"></div></div>'+
+ '</div>'+
+ '<div class="kpi-grid" style="margin-top:14px;">'+
+  kpiCard('Leads nuevos',k.leadsNuevos,'')+
+  kpiCard('Cotizaciones enviadas',k.cotizacionesEnviadas,'')+
+  kpiCard('Reservas cerradas',k.reservasCerradas,'')+
+  kpiCard('Conversión',k.conversion.toFixed(1)+'%','')+
+  kpiCard('Ticket promedio',fmtMoney(k.ticketProm),'')+
+  kpiCard('Utilidad estimada',fmtMoney(k.utilidadEstimada),'')+
+  kpiCard('Pendiente de cobrar',fmtMoney(k.pendienteCobrar),'')+
+  kpiCard('Seguimientos de hoy',k.segHoy,'')+
+ '</div>'+
+ '<div class="hot-card" style="margin-top:20px;">'+
+  '<div class="hot-title">&#128293; Lo que tengo que hacer hoy para vender</div>'+
+  '<div class="hot-sub">Prospectos priorizados automáticamente por urgencia y valor.</div>'+
+  (hot.length? hot.map(clientRowHot).join('') : (state.clientes.length===0?
+    '<div class="empty-state"><div class="emo">&#128101;</div>Todavía no tienes clientes cargados.<br>Ve a CRM y agrega el primero.</div>' :
+    '<div class="empty-state"><div class="emo">&#127881;</div>Estás al día, no hay pendientes urgentes.</div>'))+
+ '</div>'+
+ '<button class="btn btn-navy btn-block" style="margin-top:18px;" onclick="analizarNegocio()">&#128269; Analizar mi negocio</button>';
+}
+
+function kpiCard(label,value,sub){
+ return '<div class="kpi-card"><div class="kpi-label">'+esc(label)+'</div><div class="kpi-value">'+value+'</div>'+(sub?'<div class="kpi-sub">'+sub+'</div>':'')+'</div>';
+}
+
+function findClient(id){return state.clientes.filter(function(c){return c.id===id;})[0];}
+function blankClient(){
+ return {id:null,nombre:'',whatsapp:'',ciudad:'',fuente:'Instagram',tipoViaje:'Nacional Playa',destino:'',hotel:'',
+  fechaInicio:'',fechaFin:'',adultos:2,menores:[],presupuesto:'',valorCotizado:'',valorVenta:'',anticipoPagado:0,
+  utilidadPct:0.18,etapa:'Nuevo lead',probabilidad:10,ultimoContacto:rel(0),proximoSeguimiento:'',perdido:false,
+  referidoPor:null,notas:[],creadoEn:rel(0),fechaApartado:null};
+}
+
+function clientListItem(c){
+ var t=urgTag(c);
+ var color=avatarColor(c.nombre);
+ return '<div class="client-row" onclick="openClientModal(\''+c.id+'\')">'+
+  '<div class="avatar" style="background:'+color+'">'+initials(c.nombre)+'</div>'+
+  '<div class="client-info">'+
+   '<div class="client-name">'+esc(c.nombre)+'</div>'+
+   '<div class="client-meta">'+esc(c.destino||'Sin destino')+' &middot; '+esc(c.ciudad||'')+'</div>'+
+   '<div style="margin-top:5px;">'+stageBadge(c)+'</div>'+
+  '</div>'+
+  '<div class="client-right">'+
+   '<div class="client-value">'+(clienteValor(c)?fmtMoney(clienteValor(c)):'&mdash;')+'</div>'+
+   '<div class="client-dot-row"><span class="dot '+t.dot+'"></span><span style="font-size:11px;color:var(--text-muted);">'+esc(t.label)+'</span></div>'+
+  '</div>'+
+ '</div>';
+}
+
+function renderCRM(){
+ var q=(state.filtroCRM.q||'').toLowerCase();
+ var et=state.filtroCRM.etapa;
+ var list=state.clientes.filter(function(c){
+  var okq=!q||c.nombre.toLowerCase().indexOf(q)!==-1||(c.destino||'').toLowerCase().indexOf(q)!==-1;
+  var oke=et==='todas'||c.etapa===et;
+  return okq&&oke;
+ }).sort(function(a,b){return priorityScore(b)-priorityScore(a);});
+ var chips='<button class="chip'+(et==='todas'?' active':'')+'" onclick="filterCRMStage(\'todas\')">Todas ('+state.clientes.length+')</button>'+
+  STAGES.map(function(s){
+   var n=state.clientes.filter(function(c){return c.etapa===s.key;}).length;
+   return '<button class="chip'+(et===s.key?' active':'')+'" onclick="filterCRMStage(\''+s.key+'\')">'+esc(s.short)+' ('+n+')</button>';
+  }).join('');
+ return ''+
+ '<div class="view-head"><h1>CRM de clientes</h1><p>'+state.clientes.length+' clientes en tu base &middot; '+list.length+' mostrados</p></div>'+
+ '<div class="searchbar">&#128269;<input id="crmSearch" placeholder="Buscar por nombre o destino" value="'+esc(state.filtroCRM.q)+'" oninput="onCRMSearch(this.value)"></div>'+
+ '<div class="chiprow">'+chips+'</div>'+
+ (list.length? list.map(clientListItem).join('') : (state.clientes.length===0?
+   '<div class="empty-state"><div class="emo">&#128101;</div>Todavía no tienes clientes registrados.<br>Toca el botón + para agregar el primero.</div>' :
+   '<div class="empty-state"><div class="emo">&#128269;</div>No hay clientes con ese filtro.</div>'))+
+ '<button class="fab" onclick="openNewClientModal()" aria-label="Nuevo cliente">+</button>';
+}
+function onCRMSearch(v){state.filtroCRM.q=v;renderApp();var el=document.getElementById('crmSearch');if(el){el.focus();el.setSelectionRange(v.length,v.length);}}
+function filterCRMStage(s){state.filtroCRM.etapa=s;renderApp();}
+
+function menoresToStr(m){return (m||[]).map(function(x){return x.edad;}).join(', ');}
+function strToMenores(s){
+ return (s||'').split(',').map(function(x){return x.trim();}).filter(function(x){return x!=='';})
+  .map(function(x){return {edad:parseInt(x,10)||0};});
+}
+
+function clientModalHTML(c,isNew){
+ var terminal=TERMINAL_STAGES.indexOf(c.etapa)!==-1;
+ var stageOptions=STAGES.map(function(s){return '<option value="'+s.key+'"'+(c.etapa===s.key?' selected':'')+'>'+s.key+'</option>';}).join('');
+ var tipoOptions=['Nacional Playa','Internacional','Circuito Grupal'].map(function(t){return '<option'+(c.tipoViaje===t?' selected':'')+'>'+t+'</option>';}).join('');
+ var notasHTML=(c.notas&&c.notas.length)? '<div class="notes-list">'+c.notas.slice().reverse().map(function(n){
+   return '<div class="note-item"><div class="note-date">'+fmtDate(n.fecha)+'</div>'+esc(n.texto)+'</div>';
+  }).join('')+'</div>' : '<div class="form-hint">Sin notas todavía.</div>';
+ return ''+
+ '<div class="modal-head"><h2>'+(isNew?'Nuevo cliente':esc(c.nombre))+'</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+ '<div class="modal-body" id="clientModalBody" data-id="'+(c.id||'')+'" data-new="'+(isNew?'1':'0')+'" data-perdido="'+(c.perdido?'1':'0')+'">'+
+ (!isNew? (
+  '<div style="display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap;">'+
+   '<a class="btn btn-ghost btn-sm" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', te escribo de Rosale’s Adventures.')+'" target="_blank" rel="noopener">&#128242; WhatsApp</a>'+
+   '<button class="btn btn-ghost btn-sm" onclick="markContactedToday(\''+c.id+'\')">&#9989; Contactado hoy</button>'+
+   (terminal?'':'<button class="btn btn-ghost btn-sm" onclick="advanceStage(\''+c.id+'\')">&#10132; Siguiente etapa</button>')+
+   '<button class="btn btn-sm '+(c.perdido?'btn-navy':'btn-danger')+'" onclick="togglePerdido(\''+c.id+'\')">'+(c.perdido?'&#8635; Reactivar':'&#10006; Marcar perdido')+'</button>'+
+  '</div>'
+ ):'')+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Nombre</label><input class="form-control" id="f_nombre" value="'+esc(c.nombre)+'"></div>'+
+ '<div class="form-group"><label class="form-label">WhatsApp</label><input class="form-control" id="f_whatsapp" value="'+esc(c.whatsapp)+'" placeholder="52...">          </div></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Ciudad</label><input class="form-control" id="f_ciudad" value="'+esc(c.ciudad)+'"></div>'+
+ '<div class="form-group"><label class="form-label">Fuente del lead</label><input class="form-control" id="f_fuente" value="'+esc(c.fuente)+'" placeholder="Instagram, Referido..."></div></div>'+
+ '<div class="form-group"><label class="form-label">Tipo de viaje</label><select class="form-control" id="f_tipo">'+tipoOptions+'</select></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Destino</label><input class="form-control" id="f_destino" value="'+esc(c.destino)+'"></div>'+
+ '<div class="form-group"><label class="form-label">Hotel</label><input class="form-control" id="f_hotel" value="'+esc(c.hotel)+'"></div></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Fecha inicio</label><input type="date" class="form-control" id="f_fechaInicio" value="'+(c.fechaInicio||'')+'"></div>'+
+ '<div class="form-group"><label class="form-label">Fecha fin</label><input type="date" class="form-control" id="f_fechaFin" value="'+(c.fechaFin||'')+'"></div></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Adultos</label><input type="number" min="1" class="form-control" id="f_adultos" value="'+(c.adultos||1)+'"></div>'+
+ '<div class="form-group"><label class="form-label">Edades de menores</label><input class="form-control" id="f_menores" value="'+esc(menoresToStr(c.menores))+'" placeholder="ej. 3, 8"></div></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Presupuesto</label><input type="number" class="form-control" id="f_presupuesto" value="'+(c.presupuesto||'')+'"></div>'+
+ '<div class="form-group"><label class="form-label">Valor cotizado</label><input type="number" class="form-control" id="f_valorCotizado" value="'+(c.valorCotizado||'')+'"></div></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Valor de venta (si apartó)</label><input type="number" class="form-control" id="f_valorVenta" value="'+(c.valorVenta||'')+'"></div>'+
+ '<div class="form-group"><label class="form-label">Anticipo pagado</label><input type="number" class="form-control" id="f_anticipoPagado" value="'+(c.anticipoPagado||0)+'"></div></div>'+
+ '<div class="form-group"><label class="form-label">Etapa del proceso</label><select class="form-control" id="f_etapa">'+stageOptions+'</select></div>'+
+ '<div class="form-row2"><div class="form-group"><label class="form-label">Último contacto</label><input type="date" class="form-control" id="f_ultimoContacto" value="'+(c.ultimoContacto||'')+'"></div>'+
+ '<div class="form-group"><label class="form-label">Próximo seguimiento</label><input type="date" class="form-control" id="f_proximoSeguimiento" value="'+(c.proximoSeguimiento||'')+'">'+
+ '<div class="form-hint" id="segHint">Obligatorio mientras el cliente siga activo.</div></div></div>'+
+ '<div class="form-group">'+notasHTML+'<label class="form-label" style="margin-top:10px;">Agregar nota</label><textarea class="form-control" id="f_notaNueva" rows="2" placeholder="Escribe una nota de seguimiento..."></textarea></div>'+
+ '<button class="btn btn-gold btn-block" onclick="saveClient()">Guardar cliente</button>'+
+ '</div>';
+}
+function openClientModal(id){var c=findClient(id);if(!c)return;openModal(clientModalHTML(c,false));}
+function openNewClientModal(){openModal(clientModalHTML(blankClient(),true));}
+
+function saveClient(){
+ var body=document.getElementById('clientModalBody');
+ var id=body.getAttribute('data-id');
+ var isNew=body.getAttribute('data-new')==='1';
+ var perdido=body.getAttribute('data-perdido')==='1';
+ var etapa=document.getElementById('f_etapa').value;
+ var nombre=document.getElementById('f_nombre').value.trim();
+ var seg=document.getElementById('f_proximoSeguimiento').value;
+ var requiresSeg=TERMINAL_STAGES.indexOf(etapa)===-1&&!perdido;
+ if(!nombre){toast('Falta el nombre del cliente','&#9888;');document.getElementById('f_nombre').classList.add('err');return;}
+ if(requiresSeg&&!seg){
+  document.getElementById('f_proximoSeguimiento').classList.add('err');
+  document.getElementById('segHint').classList.add('err');
+  document.getElementById('segHint').textContent='Debes definir la próxima fecha de seguimiento antes de guardar.';
+  toast('Falta la próxima fecha de seguimiento','&#9888;');
+  return;
+ }
+ var data={
+  nombre:nombre,
+  whatsapp:document.getElementById('f_whatsapp').value.trim(),
+  ciudad:document.getElementById('f_ciudad').value.trim(),
+  fuente:document.getElementById('f_fuente').value.trim(),
+  tipoViaje:document.getElementById('f_tipo').value,
+  destino:document.getElementById('f_destino').value.trim(),
+  hotel:document.getElementById('f_hotel').value.trim(),
+  fechaInicio:document.getElementById('f_fechaInicio').value||null,
+  fechaFin:document.getElementById('f_fechaFin').value||null,
+  adultos:parseInt(document.getElementById('f_adultos').value,10)||1,
+  menores:strToMenores(document.getElementById('f_menores').value),
+  presupuesto:parseFloat(document.getElementById('f_presupuesto').value)||null,
+  valorCotizado:parseFloat(document.getElementById('f_valorCotizado').value)||null,
+  valorVenta:parseFloat(document.getElementById('f_valorVenta').value)||null,
+  anticipoPagado:parseFloat(document.getElementById('f_anticipoPagado').value)||0,
+  etapa:etapa,
+  ultimoContacto:document.getElementById('f_ultimoContacto').value||null,
+  proximoSeguimiento:seg||null
+ };
+ var notaNueva=document.getElementById('f_notaNueva').value.trim();
+ if(isNew){
+  var nc=blankClient();
+  Object.assign(nc,data);
+  nc.id=uid();
+  nc.perdido=false;
+  nc.creadoEn=rel(0);
+  if(WON_STAGES.indexOf(nc.etapa)!==-1&&!nc.fechaApartado)nc.fechaApartado=rel(0);
+  if(notaNueva)nc.notas.push({fecha:rel(0),texto:notaNueva});
+  state.clientes.push(nc);
+  toast('Cliente creado','&#9989;');
+  saveState();
+ }else{
+  var c=findClient(id);
+  var wasWon=WON_STAGES.indexOf(c.etapa)!==-1;
+  Object.assign(c,data);
+  if(WON_STAGES.indexOf(c.etapa)!==-1&&!wasWon&&!c.fechaApartado)c.fechaApartado=rel(0);
+  if(notaNueva)c.notas.push({fecha:rel(0),texto:notaNueva});
+  toast('Cliente actualizado','&#9989;');
+  saveState();
+ }
+ closeModal();renderApp();
+}
+
+function markContactedToday(id){
+ var c=findClient(id);if(!c)return;
+ c.ultimoContacto=rel(0);
+ saveState();
+ toast('Marcado como contactado hoy','&#128242;');
+ openClientModal(id);
+}
+function advanceStage(id){
+ var c=findClient(id);if(!c)return;
+ var idx=stageIndex(c.etapa);
+ if(idx<STAGES.length-1){c.etapa=STAGES[idx+1].key;}
+ if(WON_STAGES.indexOf(c.etapa)!==-1&&!c.fechaApartado)c.fechaApartado=rel(0);
+ saveState();
+ toast('Cliente movido a '+c.etapa,'&#10132;');
+ openClientModal(id);
+}
+function moveStageDelta(id,delta){
+ var c=findClient(id);if(!c)return;
+ var idx=stageIndex(c.etapa)+delta;
+ if(idx<0||idx>=STAGES.length)return;
+ c.etapa=STAGES[idx].key;
+ if(WON_STAGES.indexOf(c.etapa)!==-1&&!c.fechaApartado)c.fechaApartado=rel(0);
+ saveState();
+ renderApp();
+ toast(c.nombre+' &rarr; '+c.etapa);
+}
+function togglePerdido(id){
+ var c=findClient(id);if(!c)return;
+ c.perdido=!c.perdido;
+ saveState();
+ toast(c.perdido?'Cliente marcado como perdido':'Cliente reactivado');
+ openClientModal(id);
+}
+
+function kanbanCard(c){
+ var idx=stageIndex(c.etapa);
+ return '<div class="kanban-card" onclick="openClientModal(\''+c.id+'\')">'+
+  '<div class="kanban-card-name">'+esc(c.nombre)+(c.perdido?' &#10006;':'')+'</div>'+
+  '<div class="kanban-card-dest">'+esc(c.destino||'&mdash;')+'</div>'+
+  '<div class="kanban-card-foot">'+
+   '<span class="kanban-card-val">'+(clienteValor(c)?fmtMoney(clienteValor(c)):'&mdash;')+'</span>'+
+   '<span class="kanban-move" onclick="event.stopPropagation()">'+
+    '<button class="kmv-btn" onclick="moveStageDelta(\''+c.id+'\',-1)" '+(idx===0?'disabled style="opacity:.3"':'')+'>&#8249;</button>'+
+    '<button class="kmv-btn" onclick="moveStageDelta(\''+c.id+'\',1)" '+(idx===STAGES.length-1?'disabled style="opacity:.3"':'')+'>&#8250;</button>'+
+   '</span>'+
+  '</div>'+
+ '</div>';
+}
+
+function renderPipeline(){
+ var cols=STAGES.map(function(s){
+  var items=state.clientes.filter(function(c){return c.etapa===s.key;}).sort(function(a,b){return priorityScore(b)-priorityScore(a);});
+  var total=items.reduce(function(sum,c){return sum+clienteValor(c);},0);
+  return '<div class="kanban-col">'+
+   '<div class="kanban-head"><div class="kanban-head-name" style="color:'+s.color+'">'+esc(s.key)+'</div>'+
+   '<div class="kanban-head-meta">'+items.length+' clientes &middot; '+fmtMoney(total)+'</div></div>'+
+   (items.length? items.map(kanbanCard).join('') : '<div style="text-align:center;padding:20px 0;color:var(--text-soft);font-size:12px;">Sin clientes</div>')+
+  '</div>';
+ }).join('');
+ return ''+
+ '<div class="view-head"><h1>Pipeline de ventas</h1><p>Desliza para ver las 10 etapas. Usa &#8249; &#8250; para mover clientes.</p></div>'+
+ '<div class="kanban-wrap"><div class="kanban-track">'+cols+'</div></div>';
+}
+
+function cotEstado(c){
+ if(c.perdido)return {cls:'b-red',label:'Rechazada'};
+ if(WON_STAGES.indexOf(c.etapa)!==-1)return {cls:'b-green',label:'Aceptada'};
+ if(c.etapa==='Negociación'||c.etapa==='Seguimiento')return {cls:'b-yellow',label:'En seguimiento'};
+ return {cls:'b-blue',label:'Enviada'};
+}
+function renderCotizaciones(){
+ var all=state.clientes.filter(function(c){return c.valorCotizado!=null;});
+ var tabs=[['todas','Todas'],['Cotización enviada','Enviadas'],['seguimiento','En seguimiento'],['ganadas','Aceptadas'],['perdidas','Rechazadas']];
+ var f=state.filtroCot;
+ var list=all.filter(function(c){
+  if(f==='todas')return true;
+  if(f==='seguimiento')return c.etapa==='Seguimiento'||c.etapa==='Negociación';
+  if(f==='ganadas')return WON_STAGES.indexOf(c.etapa)!==-1;
+  if(f==='perdidas')return c.perdido;
+  return c.etapa===f;
+ }).sort(function(a,b){return (b.valorCotizado||0)-(a.valorCotizado||0);});
+ var chips=tabs.map(function(t){return '<button class="chip'+(f===t[0]?' active':'')+'" onclick="filterCot(\''+t[0]+'\')">'+t[1]+'</button>';}).join('');
+ var totalCotizado=list.reduce(function(s,c){return s+(c.valorCotizado||0);},0);
+ return ''+
+ '<div class="view-head"><h1>Cotizaciones</h1><p>'+all.length+' cotizaciones enviadas &middot; '+fmtMoney(totalCotizado)+' en la vista actual</p></div>'+
+ '<div class="chiprow">'+chips+'</div>'+
+ (list.length? list.map(function(c){
+   var e=cotEstado(c);
+   return '<div class="client-row" onclick="openClientModal(\''+c.id+'\')">'+
+    '<div class="avatar" style="background:'+avatarColor(c.nombre)+'">'+initials(c.nombre)+'</div>'+
+    '<div class="client-info"><div class="client-name">'+esc(c.nombre)+'</div>'+
+    '<div class="client-meta">'+esc(c.destino)+' &middot; '+esc(c.hotel||'')+'</div>'+
+    '<div style="margin-top:5px;"><span class="badge '+e.cls+'">'+e.label+'</span></div></div>'+
+    '<div class="client-right"><div class="client-value">'+fmtMoney(c.valorCotizado)+'</div>'+
+    '<div style="font-size:11px;color:var(--text-muted);margin-top:5px;">'+fmtDate(c.ultimoContacto)+'</div></div>'+
+   '</div>';
+  }).join('') : '<div class="empty-state"><div class="emo">&#128196;</div>No hay cotizaciones en este filtro.</div>');
+}
+function filterCot(f){state.filtroCot=f;renderApp();}
+
+function segGroupHTML(titulo,cls,emoji,items){
+ return '<div class="seg-group"><div class="seg-head '+cls+'">'+emoji+' '+titulo+'<span class="seg-count">'+items.length+'</span></div>'+
+  (items.length? items.map(seguimientoRow).join('') : '<div class="empty-state" style="padding:16px;"><div class="emo" style="font-size:22px;">&#10003;</div>Nada aquí por ahora.</div>')+
+ '</div>';
+}
+function seguimientoRow(c){
+ var u=urgencia(c);
+ var diasTxt='';
+ if(u==='sinfecha')diasTxt='Sin fecha programada';
+ else if(c.proximoSeguimiento){
+  var d=daysDiff(parseISO(c.proximoSeguimiento),todayDate());
+  diasTxt=d===0?'Hoy':(d<0?(Math.abs(d)+' días de retraso'):('en '+d+' días'));
+ } else diasTxt=esListoParaCerrar(c)?'Alta probabilidad de cierre':'';
+ return '<div class="hot-row">'+
+  '<div class="avatar" style="background:'+avatarColor(c.nombre)+'">'+initials(c.nombre)+'</div>'+
+  '<div class="hot-info" onclick="openClientModal(\''+c.id+'\')" style="cursor:pointer;">'+
+   '<div class="hot-name">'+esc(c.nombre)+'</div>'+
+   '<div class="hot-meta">'+esc(c.destino)+' &middot; '+fmtMoney(clienteValor(c))+' &middot; '+diasTxt+'</div>'+
+  '</div>'+
+  '<div class="hot-actions">'+
+   '<a class="icon-round wa" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', ¿cómo vas pensando lo de tu viaje a '+c.destino+'?')+'" target="_blank" rel="noopener">&#128242;</a>'+
+   '<button class="icon-round view" onclick="openRescheduleModal(\''+c.id+'\')" aria-label="Reprogramar">&#128197;</button>'+
+  '</div>'+
+ '</div>';
+}
+function renderSeguimientos(){
+ var C=activos();
+ var vencidos=C.filter(function(c){return urgencia(c)==='vencido';}).sort(function(a,b){return priorityScore(b)-priorityScore(a);});
+ var sinfecha=C.filter(function(c){return urgencia(c)==='sinfecha';});
+ var hoy=C.filter(function(c){return urgencia(c)==='hoy';});
+ var proximos=C.filter(function(c){return urgencia(c)==='proximo';});
+ var listos=C.filter(function(c){return esListoParaCerrar(c)&&urgencia(c)!=='vencido'&&urgencia(c)!=='hoy';});
+ return ''+
+ '<div class="view-head"><h1>Seguimientos</h1><p>Ningún cliente debe quedarse sin próxima acción.</p></div>'+
+ segGroupHTML('Vencidos + sin fecha',' red','&#128308;',vencidos.concat(sinfecha))+
+ segGroupHTML('Hoy','orange','&#128992;',hoy)+
+ segGroupHTML('Próximos 5 días','yellow','&#128993;',proximos)+
+ segGroupHTML('Listos para cerrar','green','&#128994;',listos);
+}
+
+function openRescheduleModal(id){
+ var c=findClient(id);if(!c)return;
+ openModal(
+  '<div class="modal-head"><h2>Reprogramar seguimiento</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+  '<div class="modal-body" data-id="'+id+'">'+
+   '<p style="font-size:13.5px;color:var(--text-muted);margin-top:0;">'+esc(c.nombre)+' &middot; '+esc(c.destino)+'</p>'+
+   '<div class="form-group"><label class="form-label">Nueva fecha de seguimiento</label>'+
+   '<input type="date" class="form-control" id="f_resched" value="'+rel(1)+'"></div>'+
+   '<div class="form-group"><label class="form-label">Nota (opcional)</label>'+
+   '<textarea class="form-control" id="f_reschedNota" rows="2" placeholder="¿Qué pasó en este contacto?"></textarea></div>'+
+   '<button class="btn btn-gold btn-block" onclick="saveReschedule(\''+id+'\')">Guardar</button>'+
+  '</div>'
+ );
+}
+function saveReschedule(id){
+ var c=findClient(id);if(!c)return;
+ var d=document.getElementById('f_resched').value;
+ if(!d){toast('Elige una fecha','&#9888;');return;}
+ c.proximoSeguimiento=d;
+ c.ultimoContacto=rel(0);
+ var nota=document.getElementById('f_reschedNota').value.trim();
+ if(nota)c.notas.push({fecha:rel(0),texto:nota});
+ saveState();
+ closeModal();renderApp();
+ toast('Seguimiento reprogramado para '+fmtDate(d));
+}
+
+function renderReservas(){
+ var list=state.clientes.filter(function(c){return c.etapa==='Apartado'||c.etapa==='Reserva confirmada';})
+  .sort(function(a,b){return (parseISO(a.fechaInicio)||0)-(parseISO(b.fechaInicio)||0);});
+ return ''+
+ '<div class="view-head"><h1>Reservas</h1><p>'+list.length+' viajes apartados o confirmados</p></div>'+
+ (list.length? list.map(function(c){
+   var saldo=Math.max(0,(c.valorVenta||0)-(c.anticipoPagado||0));
+   var pagado=c.valorVenta? Math.min(100,Math.round((c.anticipoPagado||0)/c.valorVenta*100)):0;
+   var faltan=c.fechaInicio? daysDiff(parseISO(c.fechaInicio),todayDate()):null;
+   return '<div class="card" style="margin-bottom:10px;" onclick="openClientModal(\''+c.id+'\')">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'+
+     '<div><div class="client-name">'+esc(c.nombre)+'</div>'+
+     '<div class="client-meta">'+esc(c.destino)+' &middot; '+esc(c.hotel||'')+'</div>'+
+     '<div class="client-meta">'+(c.fechaInicio?fmtDate(c.fechaInicio)+' &ndash; '+fmtDate(c.fechaFin):'Sin fecha')+(faltan!=null?' &middot; en '+faltan+' días':'')+'</div></div>'+
+     stageBadge(c)+
+    '</div>'+
+    '<div class="progress-mini"><div class="progress-mini-fill" style="width:'+pagado+'%"></div></div>'+
+    '<div style="display:flex;justify-content:space-between;margin-top:6px;font-size:11.5px;color:var(--text-muted);">'+
+     '<span>Pagado '+fmtMoney(c.anticipoPagado)+' ('+pagado+'%)</span><span>Saldo '+fmtMoney(saldo)+'</span>'+
+    '</div>'+
+   '</div>';
+  }).join('') : '<div class="empty-state"><div class="emo">&#129523;</div>Aún no hay reservas activas.</div>');
+}
+
+function renderCobranza(){
+ var list=state.clientes.filter(function(c){return (c.etapa==='Apartado'||c.etapa==='Reserva confirmada')&&(c.valorVenta||0)-(c.anticipoPagado||0)>0;});
+ list.forEach(function(c){c._limite=c.fechaInicio?addDays(parseISO(c.fechaInicio),-15):null;});
+ list.sort(function(a,b){return (a._limite||0)-(b._limite||0);});
+ var totalPendiente=list.reduce(function(s,c){return s+((c.valorVenta||0)-(c.anticipoPagado||0));},0);
+ return ''+
+ '<div class="view-head"><h1>Cobranza</h1><p>'+fmtMoney(totalPendiente)+' pendientes de cobrar en '+list.length+' clientes</p></div>'+
+ (list.length? list.map(function(c){
+   var saldo=(c.valorVenta||0)-(c.anticipoPagado||0);
+   var limite=c._limite;
+   var diasLimite=limite? daysDiff(limite,todayDate()):null;
+   var status={cls:'b-green',label:'Al corriente'};
+   if(diasLimite!=null){
+    if(diasLimite<0)status={cls:'b-red',label:'Vencido'};
+    else if(diasLimite<=7)status={cls:'b-orange',label:'Próximo a vencer'};
+   }
+   return '<div class="card" style="margin-bottom:10px;">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'+
+     '<div><div class="client-name">'+esc(c.nombre)+'</div>'+
+     '<div class="client-meta">'+esc(c.destino)+' &middot; liquidar antes del '+(limite?fmtDate(toISO(limite)):'&mdash;')+'</div></div>'+
+     '<span class="badge '+status.cls+'">'+status.label+'</span>'+
+    '</div>'+
+    '<div style="display:flex;justify-content:space-between;margin-top:10px;">'+
+     '<div><div style="font-size:11px;color:var(--text-muted);">Saldo pendiente</div><div style="font-size:16px;font-weight:800;color:var(--navy-900);">'+fmtMoney(saldo)+'</div></div>'+
+     '<div class="hot-actions">'+
+      '<a class="icon-round wa" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', te recuerdo que tienes un saldo de '+fmtMoney(saldo)+' pendiente para tu viaje a '+c.destino+'. Cualquier duda con gusto te apoyo.')+'" target="_blank" rel="noopener">&#128242;</a>'+
+      '<button class="icon-round view" onclick="openPaymentModal(\''+c.id+'\')" aria-label="Registrar pago">&#128179;</button>'+
+     '</div>'+
+    '</div>'+
+   '</div>';
+  }).join('') : '<div class="empty-state"><div class="emo">&#127881;</div>No hay saldos pendientes por cobrar.</div>');
+}
+function openPaymentModal(id){
+ var c=findClient(id);if(!c)return;
+ var saldo=(c.valorVenta||0)-(c.anticipoPagado||0);
+ openModal(
+  '<div class="modal-head"><h2>Registrar pago</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+  '<div class="modal-body" data-id="'+id+'">'+
+   '<p style="font-size:13.5px;color:var(--text-muted);margin-top:0;">'+esc(c.nombre)+' &middot; saldo actual '+fmtMoney(saldo)+'</p>'+
+   '<div class="form-group"><label class="form-label">Monto recibido</label><input type="number" class="form-control" id="f_pago" placeholder="0"></div>'+
+   '<button class="btn btn-gold btn-block" onclick="registerPayment(\''+id+'\')">Registrar</button>'+
+  '</div>'
+ );
+}
+function registerPayment(id){
+ var c=findClient(id);if(!c)return;
+ var m=parseFloat(document.getElementById('f_pago').value);
+ if(!m||m<=0){toast('Ingresa un monto válido','&#9888;');return;}
+ c.anticipoPagado=(c.anticipoPagado||0)+m;
+ if(c.valorVenta&&c.anticipoPagado>=c.valorVenta&&c.etapa==='Apartado')c.etapa='Reserva confirmada';
+ saveState();
+ closeModal();renderApp();
+ toast('Pago de '+fmtMoney(m)+' registrado');
+}
+
+function renderAnteriores(){
+ var list=state.clientes.filter(function(c){return c.etapa==='Viaje realizado'||c.etapa==='Cliente recurrente';})
+  .sort(function(a,b){return (parseISO(b.fechaFin)||0)-(parseISO(a.fechaFin)||0);});
+ return ''+
+ '<div class="view-head"><h1>Clientes anteriores</h1><p>'+list.length+' clientes que ya viajaron con nosotros</p></div>'+
+ (list.length? list.map(function(c){
+   var diasDesde=c.fechaFin? daysDiff(todayDate(),parseISO(c.fechaFin)):null;
+   var proponer=diasDesde!=null&&diasDesde>60;
+   return '<div class="card" style="margin-bottom:10px;">'+
+    '<div style="display:flex;justify-content:space-between;align-items:flex-start;">'+
+     '<div><div class="client-name">'+esc(c.nombre)+'</div>'+
+     '<div class="client-meta">Último viaje: '+esc(c.destino)+' &middot; '+(c.fechaFin?fmtDate(c.fechaFin):'&mdash;')+'</div></div>'+
+     (c.etapa==='Cliente recurrente'?'<span class="badge b-gold">&#127942; Recurrente</span>':'<span class="badge b-blue">Viajó</span>')+
+    '</div>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">'+
+     '<a class="btn btn-ghost btn-sm" href="'+waLink(c.whatsapp,'Hola '+c.nombre+', espero que sigas increíble. Te escribo de Rosale’s Adventures.')+'" target="_blank" rel="noopener">&#128242; Saludar</a>'+
+     (proponer?'<button class="btn btn-ghost btn-sm" onclick="proponerViaje(\''+c.id+'\')">&#9992;&#65039; Proponer próximo viaje</button>':'')+
+     '<button class="btn btn-ghost btn-sm" onclick="openClientModal(\''+c.id+'\')">&#128065; Ver ficha</button>'+
+    '</div>'+
+   '</div>';
+  }).join('') : '<div class="empty-state"><div class="emo">&#128193;</div>Todavía no tienes clientes con viaje realizado.</div>');
+}
+function proponerViaje(id){
+ var c=findClient(id);if(!c)return;
+ var nc=blankClient();
+ nc.id=uid();nc.nombre=c.nombre;nc.whatsapp=c.whatsapp;nc.ciudad=c.ciudad;nc.fuente='Cliente anterior';
+ nc.etapa='Nuevo lead';nc.proximoSeguimiento=rel(1);nc.ultimoContacto=rel(0);nc.creadoEn=rel(0);
+ nc.notas=[{fecha:rel(0),texto:'Reactivado desde clientes anteriores para proponer un nuevo viaje.'}];
+ state.clientes.push(nc);
+ saveState();
+ toast('Nuevo lead creado para proponerle su próximo viaje');
+ openClientModal(nc.id);
+}
+
+function renderReferidos(){
+ var referidores={};
+ state.clientes.forEach(function(c){
+  if(c.referidoPor){
+   referidores[c.referidoPor]=referidores[c.referidoPor]||{nombre:c.referidoPor,count:0,valor:0};
+   referidores[c.referidoPor].count++;
+   if(WON_STAGES.indexOf(c.etapa)!==-1)referidores[c.referidoPor].valor+=(c.valorVenta||0);
+  }
+ });
+ var ranking=Object.keys(referidores).map(function(k){return referidores[k];}).sort(function(a,b){return b.valor-a.valor||b.count-a.count;});
+ var referidosList=state.clientes.filter(function(c){return c.referidoPor;});
+ var medals=['&#129351;','&#129352;','&#129353;'];
+ return ''+
+ '<div class="view-head"><h1>Referidos</h1><p>Tus mejores promotores y quién han traído.</p></div>'+
+ '<div class="section-title">&#127942; Ranking de referidores</div>'+
+ (ranking.length? ranking.map(function(r,i){
+   return '<div class="client-row"><div class="avatar" style="background:'+avatarColor(r.nombre)+'">'+(i<3?medals[i]:initials(r.nombre))+'</div>'+
+    '<div class="client-info"><div class="client-name">'+esc(r.nombre)+'</div>'+
+    '<div class="client-meta">'+r.count+' referido'+(r.count>1?'s':'')+'</div></div>'+
+    '<div class="client-right"><div class="client-value">'+fmtMoney(r.valor)+'</div><div style="font-size:11px;color:var(--text-muted);">generado</div></div></div>';
+  }).join('') : '<div class="empty-state"><div class="emo">&#127873;</div>Aún no tienes referidos registrados.</div>')+
+ '<div class="section-title">Clientes referidos</div>'+
+ (referidosList.length? referidosList.map(function(c){
+   return '<div class="client-row" onclick="openClientModal(\''+c.id+'\')"><div class="avatar" style="background:'+avatarColor(c.nombre)+'">'+initials(c.nombre)+'</div>'+
+    '<div class="client-info"><div class="client-name">'+esc(c.nombre)+'</div>'+
+    '<div class="client-meta">Referido por '+esc(c.referidoPor)+'</div></div>'+stageBadge(c)+'</div>';
+  }).join('') : '')+
+ '<button class="fab" onclick="openNewClientModal()" aria-label="Nuevo referido">+</button>';
+}
+
+function barsHTML(rows,gold){
+ var max=Math.max.apply(null,rows.map(function(r){return r.v;}).concat([1]));
+ return rows.map(function(r){
+  var w=Math.max(4,Math.round(r.v/max*100));
+  return '<div class="bar-row"><div class="bar-label">'+esc(r.k)+'</div>'+
+   '<div class="bar-track"><div class="bar-fill'+(gold?' gold':'')+'" style="width:'+w+'%"></div></div>'+
+   '<div class="bar-val">'+r.fmt+'</div></div>';
+ }).join('');
+}
+function monthLabel(y,m){var d=new Date(y,m,1);return d.toLocaleDateString('es-MX',{month:'short'});}
+
+function renderReportes(){
+ var C=activos();
+ var won=C.filter(function(c){return WON_STAGES.indexOf(c.etapa)!==-1;});
+ var now=todayDate();
+ var meses=[];
+ for(var i=5;i>=0;i--){var d=new Date(now.getFullYear(),now.getMonth()-i,1);meses.push({y:d.getFullYear(),m:d.getMonth(),label:monthLabel(d.getFullYear(),d.getMonth())});}
+ var ventasPorMes=meses.map(function(mm){
+  var total=won.filter(function(c){if(!c.fechaApartado)return false;var d=parseISO(c.fechaApartado);return d.getFullYear()===mm.y&&d.getMonth()===mm.m;})
+   .reduce(function(s,c){return s+(c.valorVenta||0);},0);
+  return {k:mm.label,v:total,fmt:fmtMoney(total)};
+ });
+ function groupTop(list,keyFn,valFn,n){
+  var g={};
+  list.forEach(function(c){var k=keyFn(c);if(!k)return;g[k]=(g[k]||0)+valFn(c);});
+  return Object.keys(g).map(function(k){return {k:k,v:g[k]};}).sort(function(a,b){return b.v-a.v;}).slice(0,n||6);
+ }
+ var porDestino=groupTop(won,function(c){return c.destino;},function(c){return c.valorVenta||0;}).map(function(r){return {k:r.k,v:r.v,fmt:fmtMoney(r.v)};});
+ var porFuente=groupTop(C,function(c){return c.fuente;},function(){return 1;}).map(function(r){return {k:r.k,v:r.v,fmt:r.v};});
+ var porHotel=groupTop(won,function(c){return c.hotel;},function(){return 1;}).map(function(r){return {k:r.k,v:r.v,fmt:r.v+' ventas'};});
+ var funnel=STAGES.map(function(s){var n=C.filter(function(c){return stageIndex(c.etapa)>=stageIndex(s.key);}).length;return {k:s.short,v:n,fmt:n};});
+ return ''+
+ '<div class="view-head"><h1>Reportes</h1><p>Cómo se está moviendo tu negocio en los últimos meses.</p></div>'+
+ '<div class="section-title">&#128200; Ventas por mes</div><div class="card">'+barsHTML(ventasPorMes,true)+'</div>'+
+ '<div class="section-title">&#127958;&#65039; Ingresos por destino</div><div class="card">'+(porDestino.length?barsHTML(porDestino):'<div class="form-hint">Sin datos todavía.</div>')+'</div>'+
+ '<div class="section-title">&#128225; Leads por fuente</div><div class="card">'+(porFuente.length?barsHTML(porFuente):'<div class="form-hint">Sin datos todavía.</div>')+'</div>'+
+ '<div class="section-title">&#127976; Hoteles más vendidos</div><div class="card">'+(porHotel.length?barsHTML(porHotel):'<div class="form-hint">Sin datos todavía.</div>')+'</div>'+
+ '<div class="section-title">&#128172; Embudo de conversión</div><div class="card">'+barsHTML(funnel)+'</div>';
+}
+
+var PRE_WON_STAGES=['Nuevo lead','Contactado','Calificado','Cotización enviada','Seguimiento','Negociación'];
+function computeInsights(){
+ var C=activos();
+ var won=C.filter(function(c){return WON_STAGES.indexOf(c.etapa)!==-1;});
+ var overdue=C.filter(function(c){var u=urgencia(c);return u==='vencido'||u==='sinfecha';}).sort(function(a,b){return priorityScore(b)-priorityScore(a);});
+ var overdueValue=overdue.reduce(function(s,c){return s+clienteValor(c);},0);
+
+ var staleByStage={};
+ C.forEach(function(c){
+  if(PRE_WON_STAGES.indexOf(c.etapa)===-1)return;
+  var days=c.ultimoContacto?daysDiff(todayDate(),parseISO(c.ultimoContacto)):999;
+  if(days>5)staleByStage[c.etapa]=(staleByStage[c.etapa]||0)+1;
+ });
+ var bottleneckStage=null,bottleneckCount=0;
+ Object.keys(staleByStage).forEach(function(k){if(staleByStage[k]>bottleneckCount){bottleneckCount=staleByStage[k];bottleneckStage=k;}});
+
+ function topGroup(list,keyFn,valFn){
+  var g={};list.forEach(function(c){var k=keyFn(c);if(!k)return;g[k]=(g[k]||0)+valFn(c);});
+  var arr=Object.keys(g).map(function(k){return {k:k,v:g[k]};}).sort(function(a,b){return b.v-a.v;});
+  return arr[0]||null;
+ }
+ var topFuente=topGroup(won,function(c){return c.fuente;},function(c){return c.valorVenta||0;});
+ var topDestino=topGroup(won,function(c){return c.destino;},function(c){return c.valorVenta||0;});
+ var topHotel=topGroup(won,function(c){return c.hotel;},function(){return 1;});
+
+ var altaProbabilidad=C.filter(function(c){return esListoParaCerrar(c);}).sort(function(a,b){return clienteValor(b)-clienteValor(a);});
+ var cotSinSeg=C.filter(function(c){return c.valorCotizado!=null&&WON_STAGES.indexOf(c.etapa)===-1&&(urgencia(c)==='vencido'||urgencia(c)==='sinfecha');});
+ var reactivables=state.clientes.filter(function(c){
+  if(c.etapa!=='Viaje realizado')return false;
+  var d=c.fechaFin?daysDiff(todayDate(),parseISO(c.fechaFin)):0;
+  return d>60;
+ });
+ var referidosSinContactar=C.filter(function(c){return c.fuente==='Referido'&&(c.etapa==='Nuevo lead'||c.etapa==='Contactado');});
+ var k=kpis();
+ return {overdue:overdue,overdueValue:overdueValue,bottleneckStage:bottleneckStage,bottleneckCount:bottleneckCount,
+  topFuente:topFuente,topDestino:topDestino,topHotel:topHotel,altaProbabilidad:altaProbabilidad,
+  cotSinSeg:cotSinSeg,reactivables:reactivables,referidosSinContactar:referidosSinContactar,kpis:k,won:won};
+}
+
+function buildRecommendations(ins){
+ var recs=[];
+ if(ins.overdue.length){
+  var names=ins.overdue.slice(0,3).map(function(c){return c.nombre;}).join(', ');
+  recs.push({score:100+ins.overdueValue/1000,icon:'&#128308;',
+   title:ins.overdue.length+' seguimientos vencidos o sin fecha suman '+fmtMoney(ins.overdueValue)+' en ventas potenciales',
+   detail:'Contacta hoy mismo a '+names+(ins.overdue.length>3?' y '+(ins.overdue.length-3)+' más':'')+'. Cada día de retraso baja la probabilidad de cierre.'});
+ }
+ if(ins.bottleneckStage){
+  recs.push({score:95,icon:'&#129680;',
+   title:'Cuello de botella en la etapa "'+ins.bottleneckStage+'"',
+   detail:ins.bottleneckCount+' cliente'+(ins.bottleneckCount>1?'s llevan':' lleva')+' más de 5 días sin contacto ahí. Da seguimiento antes de que se enfríen y se pierdan.'});
+ }
+ if(ins.altaProbabilidad.length){
+  var names2=ins.altaProbabilidad.slice(0,3).map(function(c){return c.nombre;}).join(', ');
+  var val2=ins.altaProbabilidad.reduce(function(s,c){return s+clienteValor(c);},0);
+  recs.push({score:92,icon:'&#128994;',
+   title:ins.altaProbabilidad.length+' cliente'+(ins.altaProbabilidad.length>1?'s están':' está')+' listo'+(ins.altaProbabilidad.length>1?'s':'')+' para cerrar ('+fmtMoney(val2)+')',
+   detail:'Prioriza hoy: '+names2+'. Están en negociación o apartado con probabilidad alta de compra.'});
+ }
+ if(ins.cotSinSeg.length){
+  recs.push({score:88,icon:'&#128196;',
+   title:ins.cotSinSeg.length+' cotización'+(ins.cotSinSeg.length>1?'es enviadas':' enviada')+' sin seguimiento programado',
+   detail:'Nunca debe quedar una cotización sin una próxima fecha. Ábrelas en Seguimientos y reprográmalas ahora.'});
+ }
+ if(ins.topFuente){
+  recs.push({score:70,icon:'&#128200;',
+   title:ins.topFuente.k+' es tu mejor fuente de ventas ('+fmtMoney(ins.topFuente.v)+')',
+   detail:'Vale la pena invertir más presupuesto o contenido ahí: es el canal con mejor retorno de tu negocio.'});
+ }
+ if(ins.referidosSinContactar.length){
+  recs.push({score:65,icon:'&#127873;',
+   title:ins.referidosSinContactar.length+' referido'+(ins.referidosSinContactar.length>1?'s':'')+' sin contactar a tiempo',
+   detail:'Los referidos cierran más rápido que un lead frío. Contáctalos primero, antes que a cualquier otro lead nuevo.'});
+ }
+ if(ins.reactivables.length){
+  recs.push({score:55,icon:'&#9992;&#65039;',
+   title:ins.reactivables.length+' cliente'+(ins.reactivables.length>1?'s':'')+' que ya viajó hace más de 2 meses sin reactivar',
+   detail:'Escríbeles para pedir reseña y proponer su siguiente viaje. Es tu venta más barata de conseguir.'});
+ }
+ if(ins.topDestino){
+  recs.push({score:40,icon:'&#127958;&#65039;',
+   title:ins.topDestino.k+' es tu destino más rentable ('+fmtMoney(ins.topDestino.v)+')',
+   detail:'Considera crear una promoción o campaña específica para este destino, ya demostró demanda real.'});
+ }
+ recs.sort(function(a,b){return b.score-a.score;});
+ return recs.slice(0,5);
+}
+
+function analizarNegocio(){
+ openModal(
+  '<div class="modal-head"><h2>&#128269; Análisis de tu negocio</h2><button class="icon-btn" onclick="closeModal()">&#10005;</button></div>'+
+  '<div class="modal-body" id="analysisBody"><div class="insight-loading"><div class="spinner"></div><div style="font-size:13.5px;color:var(--text-muted);">Analizando tu pipeline y tus clientes&hellip;</div></div></div>'
+ );
+ setTimeout(renderAnalysisResults,700);
+}
+function renderAnalysisResults(){
+ var el=document.getElementById('analysisBody');
+ if(!el)return;
+ var ins=computeInsights();
+ var recs=buildRecommendations(ins);
+ var k=ins.kpis;
+ var statsHTML=''+
+  '<div class="kpi-grid" style="grid-template-columns:repeat(2,1fr);margin-bottom:6px;">'+
+  '<div class="insight-stat"><b>'+k.conversion.toFixed(1)+'%</b><span>Conversión</span></div>'+
+  '<div class="insight-stat"><b>'+fmtMoney(k.ticketProm)+'</b><span>Ticket promedio</span></div>'+
+  '<div class="insight-stat"><b>'+ins.won.length+'</b><span>Ventas cerradas</span></div>'+
+  '<div class="insight-stat"><b>'+(ins.topDestino?ins.topDestino.k:'&mdash;')+'</b><span>Destino top</span></div>'+
+  '</div>';
+ var recsHTML=recs.length? recs.map(function(r,i){
+   return '<div class="rec-card"><div class="rec-top"><span class="rec-num">'+(i+1)+'</span><span class="rec-title">'+r.icon+' '+r.title+'</span></div>'+
+    '<div class="rec-detail">'+r.detail+'</div></div>';
+  }).join('') : (state.clientes.length===0?
+   '<div class="empty-state"><div class="emo">&#128101;</div>Todavía no hay clientes para analizar.<br>Agrega tus primeros prospectos en CRM.</div>' :
+   '<div class="empty-state"><div class="emo">&#127881;</div>Todo está bajo control, no hay focos rojos por ahora.</div>');
+ el.innerHTML=statsHTML+'<div class="section-title" style="margin-top:18px;">&#127919; Recomendaciones accionables</div>'+recsHTML;
+}
+
+renderApp();
+
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('service-worker.js').catch(function () {});
+  });
+}
+</script>
+</body>
+</html>
